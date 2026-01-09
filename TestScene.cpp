@@ -10,7 +10,7 @@
 #include "Application.h"
 #include "Cube.h"
 
-Application* app = Application::Instance();
+//Application* app = Application::Instance();
 
 void TestScene::Init()
 {	
@@ -28,7 +28,7 @@ void TestScene::Init()
 	cube->addComponent<Cube>()->Init();
 
 	Rigidbody* rigidbody = cube->addComponent<Rigidbody>();
-	rigidbody->Init(app->getPhysicsWorld()->getWorld());
+	//rigidbody->Init(app->getPhysicsWorld()->getWorld());
 	rigidbody->setBodyType(b2_dynamicBody);
 
 	BoxCollider* boxCollider = cube->addComponent<BoxCollider>();
@@ -48,7 +48,7 @@ void TestScene::Init()
 	cube2->addComponent<Cube>()->Init();
 
 	Rigidbody* rigidbody2 = cube2->addComponent<Rigidbody>();
-	rigidbody2->Init(app->getPhysicsWorld()->getWorld());
+	//rigidbody2->Init(app->getPhysicsWorld()->getWorld());
 
 	BoxCollider* boxCollider2 = cube2->addComponent<BoxCollider>();
 	boxCollider2->setSize({ 32.0f, 32.0f });
@@ -61,6 +61,6 @@ void TestScene::Init()
 
 void TestScene::Update(float deltaTime)
 {
-	app->getPhysicsWorld()->Update(deltaTime);
+	//app->getPhysicsWorld()->Update(deltaTime);
 	AScene::Update(deltaTime);
 }
