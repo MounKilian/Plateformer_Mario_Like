@@ -5,7 +5,9 @@
 #include "Entity.h"
 #include "Renderer.h"
 #include "Transform.h"
-#include "Player.h"
+#include "Cube.h"
+#include "Rigidbody.h"
+#include "BoxCollider.h"
 
 Application* app = Application::Instance();
 
@@ -13,7 +15,7 @@ void Level1Scene::Init()
 {
 	RessourceManager* ressourceManager = RessourceManager::Instance();
 	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
-	sf::Texture* textureShip = ressourceManager->loadtexture("Assets\\ships.png");
+	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\spritesheet_tiles.png");
 
     //Init du background
 	Entity* backgroundCloud = new Entity();
@@ -31,15 +33,27 @@ void Level1Scene::Init()
     backgroundGround->addComponent(new Renderer(textureBackground));
     backgroundGround->addComponent<Background>()->Init(3);
 
-    Entity* player = new Entity();
-    player->addComponent<Transform>()->setPosition({ 0, 0 });
-    player->addComponent(new Renderer(textureShip));
-    player->addComponent<Player>()->Init();
-
 	this->AddEntity(backgroundCloud);
 	this->AddEntity(backgroundWhite);
 	this->AddEntity(backgroundGround);
-	this->AddEntity(player);
+
+	for (float i = -210.f; i <= 400.f; i += 32.f) {
+		Entity* cube = new Entity();
+		cube->addComponent<Transform>()->setPosition({ i, 170.0f });
+		cube->addComponent(new Renderer(textureTile));
+		cube->addComponent<Cube>()->Init();
+
+		Rigidbody* rigidbody = cube->addComponent<Rigidbody>();
+		rigidbody->Init(app->getPhysicsWorld()->getWorld());
+
+		BoxCollider* boxCollider = cube->addComponent<BoxCollider>();
+		boxCollider->setSize({ 32.0f, 32.0f });
+		boxCollider->setDensity(1.0f);
+		boxCollider->setFriction(0.5f);
+		boxCollider->Init(rigidbody);
+		
+		this->AddEntity(cube);
+	}
 }
 
 void Level1Scene::Update(float deltaTime)
