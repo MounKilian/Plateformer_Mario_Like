@@ -2,16 +2,16 @@
 
 #include "Ship.h"
 #include "Projectile.h"
+#include "AComponent.h"
+#include "ICollisionEvent.h"
 #include <vector>
 
-class Player : public AComponent
+class Player : public AComponent, public ICollisionEvent
 {
-	sf::Clock timerShoot;
-
 	public :
-		/*Player(sf::Texture& texture, float dammage, float life);*/
 		void Init();
 		void Move(float deltaTime);
-		void Shoot();
 		void Update(float dt) override;
+		void BeginCollision(ACollider* me, ACollider* other) override;
+		void EndCollision(ACollider* me, ACollider* other) override;
 };

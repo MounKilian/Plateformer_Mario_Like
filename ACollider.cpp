@@ -4,6 +4,7 @@ void ACollider::Init(Rigidbody* rigidbody)
 {
 	shapeDef = b2DefaultShapeDef();
 	shapeDef.enableContactEvents = true;
+	shapeDef.userData = this;
 	setShapeOnBody(rigidbody->getBody());
 	isInit = true;
 }

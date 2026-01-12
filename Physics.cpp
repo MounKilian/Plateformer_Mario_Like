@@ -45,6 +45,7 @@ void Physics::Update(float deltaTime)
 		b2ContactBeginTouchEvent beginEvent = contactEvents.beginEvents[i];
 		ACollider* colliderA = nullptr;
 		ACollider* colliderB = nullptr;
+
 		for (Entity* entity : scene->GetEntities()) {
 			if (ACollider* collider = entity->getComponent<ACollider>()) {
 				if (B2_ID_EQUALS(collider->shapeId, beginEvent.shapeIdA)) {
@@ -55,33 +56,14 @@ void Physics::Update(float deltaTime)
 				}
 			}
 		}
-		if (auto event = colliderA->parent->getComponent<ICollisionEvent>())
-			event->BeginCollision(colliderA, colliderB);
 
-		if (auto event = colliderB->parent->getComponent<ICollisionEvent>())
-			event->BeginCollision(colliderB, colliderA);
-	}
+		if (colliderA && colliderB) {
+			if (auto event = colliderA->parent->getComponent<ICollisionEvent>())
+				event->BeginCollision(colliderA, colliderB);
 
-	for (int i = 0; i < contactEvents.endCount; i++)
-	{
-		b2ContactEndTouchEvent endEvent = contactEvents.endEvents[i];
-		ACollider* colliderA = nullptr;
-		ACollider* colliderB = nullptr;
-		for (Entity* entity : scene->GetEntities()) {
-			if (ACollider* collider = entity->getComponent<ACollider>()) {
-				if (B2_ID_EQUALS(collider->shapeId, endEvent.shapeIdA)) {
-					colliderA = collider;
-				}
-				else if (B2_ID_EQUALS(collider->shapeId, endEvent.shapeIdB)) {
-					colliderB = collider;
-				}
-			}
+			if (auto event = colliderB->parent->getComponent<ICollisionEvent>())
+				event->BeginCollision(colliderB, colliderA);
 		}
-		if (auto event = colliderA->parent->getComponent<ICollisionEvent>())
-			event->EndCollision(colliderA, colliderB);
-
-		if (auto event = colliderB->parent->getComponent<ICollisionEvent>())
-			event->EndCollision(colliderB, colliderA);
 	}
 }
 
