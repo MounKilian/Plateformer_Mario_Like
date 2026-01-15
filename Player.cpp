@@ -36,7 +36,7 @@ void Player::Move(float deltaTime)
 
 void Player::Jump()
 {
-	float jumpForce = 5.f;
+	float jumpForce = 7.5f;
 
 	Rigidbody* rb = parent->getComponent<Rigidbody>();
 

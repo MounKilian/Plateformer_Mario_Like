@@ -9,5 +9,6 @@ class Level1Scene : public AScene
 	public:
 		void Init();
 		void Update(float deltaTime);
+		void CreateTilePlatform(float startX, int tilesNbrs, float y, sf::Texture* textureTile);
 };
 	
