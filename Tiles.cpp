@@ -10,14 +10,29 @@ void Tiles::Init(int type)
 {
 	switch (type)
 	{
-		case 1: // First Grass Tile
+		case 1: // First Grass Tile Ground
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 780, 585 }, { 64, 64 }));
 			break;
-		case 2: // Mid Grass Tile
+		case 2: // Mid Grass Tile Ground
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 715, 585 }, { 64, 64 }));
 			break;
-		case 3: // End Grass Tile
+		case 3: // End Grass Tile Ground
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 845, 585 }, { 64, 64 }));
+			break;
+		case 4: // First Grass Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 585, 585 }, { 64, 64 }));
+			break;
+		case 5: // Mid Grass Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 520, 585 }, { 64, 64 }));
+			break;
+		case 6: // End Grass Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 650, 585 }, { 64, 64 }));
+			break;
+		case 7: // Ocean Tile
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 260, 1105 }, { 64, 64 }));
+			break;
+		case 8: // Ocean Tile Mid
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 195, 1105 }, { 64, 64 }));
 			break;
 	}
 
