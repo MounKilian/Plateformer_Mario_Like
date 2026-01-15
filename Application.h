@@ -16,5 +16,7 @@ class Application
 		void Init();
 		void Loop();
 		Physics* getPhysicsWorld();
+		sf::RenderWindow& getWindow();
+		sf::View& getView();
 };
 

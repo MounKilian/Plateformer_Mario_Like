@@ -56,3 +56,13 @@ Physics* Application::getPhysicsWorld()
 {
 	return physicsWorld;
 }
+
+sf::RenderWindow& Application::getWindow()
+{
+	return m_window;
+}
+
+sf::View& Application::getView()
+{
+	return m_view;
+}

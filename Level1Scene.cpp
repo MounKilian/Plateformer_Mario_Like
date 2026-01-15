@@ -20,24 +20,26 @@ void Level1Scene::Init()
 	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
 
     //Init du background
-	Entity* backgroundCloud = new Entity();
-    backgroundCloud->addComponent<Transform>()->setPosition({ 0.f, -150.f });
-    backgroundCloud->addComponent(new Renderer(textureBackground));
-    backgroundCloud->addComponent<Background>()->Init(1);
+	for (float i = -100.f; i <= 4000.f; i += 800.f) {
+		Entity* backgroundCloud = new Entity();
+		backgroundCloud->addComponent<Transform>()->setPosition({ i, -150.f });
+		backgroundCloud->addComponent(new Renderer(textureBackground));
+		backgroundCloud->addComponent<Background>()->Init(1);
 
-    Entity* backgroundWhite = new Entity();
-    backgroundWhite->addComponent<Transform>()->setPosition({ 0.f, 0.0f });
-    backgroundWhite->addComponent(new Renderer(textureBackground));
-    backgroundWhite->addComponent<Background>()->Init(2);
+		Entity* backgroundWhite = new Entity();
+		backgroundWhite->addComponent<Transform>()->setPosition({ i, 0.f });
+		backgroundWhite->addComponent(new Renderer(textureBackground));
+		backgroundWhite->addComponent<Background>()->Init(2);
 
-    Entity* backgroundGround = new Entity();
-    backgroundGround->addComponent<Transform>()->setPosition({ 0.f, 150.0f });
-    backgroundGround->addComponent(new Renderer(textureBackground));
-    backgroundGround->addComponent<Background>()->Init(3);
+		Entity* backgroundGround = new Entity();
+		backgroundGround->addComponent<Transform>()->setPosition({ i, 150.f });
+		backgroundGround->addComponent(new Renderer(textureBackground));
+		backgroundGround->addComponent<Background>()->Init(3);
 
-	this->AddEntity(backgroundCloud);
-	this->AddEntity(backgroundWhite);
-	this->AddEntity(backgroundGround);
+		this->AddEntity(backgroundCloud);
+		this->AddEntity(backgroundWhite);
+		this->AddEntity(backgroundGround);
+	}
 
 	for (float i = -200.f; i <= 440.f; i += 32.f) {
 		Entity* cube = new Entity();
@@ -85,12 +87,17 @@ void Level1Scene::Init()
 	boxCollider->setDensity(1.f);
 	boxCollider->setFriction(0.0f);
 	boxCollider->Init(rigidbody);
+
+	m_player = player;
 	
 	this->AddEntity(player);
 }
 
 void Level1Scene::Update(float deltaTime)
 {
+	app->getView().setCenter({ m_player->getComponent<Transform>()->getPosition().x, 22.f});
+	app->getWindow().setView(app->getView());
+
     app->getPhysicsWorld()->Update(deltaTime);
     AScene::Update(deltaTime);
 }

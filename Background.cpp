@@ -27,5 +27,5 @@ void Background::Init(int layout)
 	float scaleX = winSize.x /256.f;
 	float scaleY = winSize.y / 3.f /256.f;
 
-	parent->getComponent<Transform>()->setScale({ scaleX / 2.f, scaleY / 2.f });
+	parent->getComponent<Transform>()->setScale({ scaleX / 1.5f, scaleY / 1.5f });
 }
