@@ -22,7 +22,7 @@ void Background::Init(int layout)
 	}
 
 	parent->getComponent<Transform>()->setOrigin({ 128.f, 128.f });
-	sf::Vector2f winSize = {900.f, 900.f};
+	sf::Vector2f winSize = {1200.f, 900.f};
 
 	float scaleX = winSize.x /256.f;
 	float scaleY = winSize.y / 3.f /256.f;

@@ -39,23 +39,37 @@ void Level1Scene::Init()
 	this->AddEntity(backgroundWhite);
 	this->AddEntity(backgroundGround);
 
-	for (float i = -210.f; i <= 400.f; i += 32.f) {
+	for (float i = -200.f; i <= 440.f; i += 32.f) {
 		Entity* cube = new Entity();
 		cube->addComponent<Transform>()->setPosition({ i, 170.0f });
 		cube->addComponent(new Renderer(textureTile));
 		cube->addComponent<Cube>()->Init();
 
-		Rigidbody* rigidbody = cube->addComponent<Rigidbody>();
+		/*Rigidbody* rigidbody = cube->addComponent<Rigidbody>();
 		rigidbody->Init(app->getPhysicsWorld()->getWorld());
 
 		BoxCollider* boxCollider = cube->addComponent<BoxCollider>();
 		boxCollider->setSize({ 32.0f, 32.0f });
 		boxCollider->setDensity(1.0f);
 		boxCollider->setFriction(0.5f);
-		boxCollider->Init(rigidbody);
+		boxCollider->Init(rigidbody);*/
 		
 		this->AddEntity(cube);
 	}
+
+	Entity* ground = new Entity();
+	ground->addComponent<Transform>()->setPosition({ 120.f, 170.0f });
+
+	Rigidbody* groundRb = ground->addComponent<Rigidbody>();
+	groundRb->Init(app->getPhysicsWorld()->getWorld());
+	groundRb->setBodyType(b2_staticBody);
+
+	BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
+	groundCollider->setSize({ 672.f, 32.f });
+	groundCollider->setFriction(0.8f);
+	groundCollider->Init(groundRb);
+
+	this->AddEntity(ground);
 
 	Entity* player = new Entity();
 	player->addComponent<Transform>()->setPosition({ 0.f, -90.f });
@@ -67,28 +81,12 @@ void Level1Scene::Init()
 	rigidbody->setBodyType(b2_dynamicBody);
 
 	BoxCollider* boxCollider = player->addComponent<BoxCollider>();
-	boxCollider->setSize({ 64.0f, 64.0f });
-	boxCollider->setDensity(1.0f);
-	boxCollider->setFriction(0.5f);
+	boxCollider->setSize({ 64.f, 64.f });
+	boxCollider->setDensity(1.f);
+	boxCollider->setFriction(0.0f);
 	boxCollider->Init(rigidbody);
-
+	
 	this->AddEntity(player);
-
-	Entity* player2 = new Entity();
-	player2->addComponent<Transform>()->setPosition({ 20.f, -100.f });
-	player2->addComponent(new Renderer(textureTile));
-	player2->addComponent<Cube>()->Init();
-
-	Rigidbody* rigidbody2 = player2->addComponent<Rigidbody>();
-	rigidbody2->Init(app->getPhysicsWorld()->getWorld());
-
-	BoxCollider* boxCollider2 = player2->addComponent<BoxCollider>();
-	boxCollider2->setSize({ 32.f, 32.f });
-	boxCollider2->setDensity(1.0f);
-	boxCollider2->setFriction(0.5f);
-	boxCollider2->Init(rigidbody2);
-
-	this->AddEntity(player2);
 }
 
 void Level1Scene::Update(float deltaTime)

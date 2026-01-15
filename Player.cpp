@@ -2,42 +2,57 @@
 #include "Transform.h"
 #include "Renderer.h"
 #include "Entity.h"
+#include "Rigidbody.h"
+#include "Physics.h"
 #include <iostream>
 
 void Player::Init()
 {
 	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 256 }, { 128, 128 }));
 	parent->getComponent<Transform>()->setOrigin({ 64,64 });
-	parent->getComponent<Transform>()->setScale({0.5f, 0.5f });
+	parent->getComponent<Transform>()->setScale({0.5f, 0.5f});
 }
 
 void Player::Move(float deltaTime)
 {
-	float speed = deltaTime * 300.f;
-	Transform* transform = parent->getComponent<Transform>();
+	float speed = 120.f;
+	Rigidbody* rb = parent->getComponent<Rigidbody>();
 
 	sf::Vector2f dir;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && transform->getPosition().x >= -180.f)
-	{
-		dir += { -1.f,0.f };
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && transform->getPosition().x <= 180.f)
-	{
-		dir += { 1.f,0.f };
-	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+		dir.x -= 1.f;
 
-	if (dir.y == 0 && dir.x == 0) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		dir.x += 1.f;
+
+	if (dir.x == 0)
 		return ;
-	};
-	dir = dir.normalized();
 
-	transform->move(dir * speed);
+	b2Vec2 velocity = rb->getLinearVelocity();
+	velocity.x = dir.x * speed / Physics::worldScale;
+	rb->setLinearVelocity(velocity);
+}
+
+void Player::Jump()
+{
+	float jumpForce = 5.f;
+
+	Rigidbody* rb = parent->getComponent<Rigidbody>();
+
+	b2Vec2 velocity = rb->getLinearVelocity();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && std::abs(velocity.y) < 0.01f)
+	{
+		velocity.y = -jumpForce;
+		rb->setLinearVelocity(velocity);
+	}
 }
 
 void Player::Update(float dt)
 {
 	Move(dt);
+	Jump();
 }
 
 void Player::BeginCollision(ACollider* me, ACollider* other)

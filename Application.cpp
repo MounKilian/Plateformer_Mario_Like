@@ -16,12 +16,12 @@ Application* Application::Instance()
 void Application::Init()
 {
 	physicsWorld = new Physics({ 0.0f, 10.0f });
-	m_window.create(sf::VideoMode({ 900, 900 }), "Shmup");
+	m_window.create(sf::VideoMode({ 1200, 900 }), "Shmup");
 	m_window.setFramerateLimit(60);
 
 	srand(time(0));
 
-	m_view.setSize({ 900.f, 900.f });
+	m_view.setSize({ 1200.f, 900.f });
 	m_view.zoom(0.5);
 	m_view.setCenter({ 0.f,0.f });
 	m_window.setView(m_view);

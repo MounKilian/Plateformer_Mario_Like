@@ -9,6 +9,7 @@ void Rigidbody::Init(b2WorldId world)
 	sf::Vector2f position = parent->getComponent<Transform>()->getPosition();
 	bodyDef.position = { position.x / Physics::worldScale, position.y / Physics::worldScale};
 	bodyId = b2CreateBody(world, &bodyDef);
+	b2Body_SetFixedRotation(bodyId, true);
 }
 
 void Rigidbody::setBodyType(b2BodyType type)
