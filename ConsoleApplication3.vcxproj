@@ -148,8 +148,8 @@
     <ClCompile Include="RessourceManager.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Ship.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Tiles.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,8 +173,8 @@
     <ClInclude Include="RessourceManager.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Ship.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="Tiles.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

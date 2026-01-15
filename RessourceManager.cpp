@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <windows.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 RessourceManager* RessourceManager::m_instance = nullptr;
 
@@ -25,4 +27,43 @@ sf::Texture* RessourceManager::loadtexture(const std::string& filename)
 		m_cache[filename] = new sf::Texture(filenameAboslute + "\\" + filename);
 	}
 	return m_cache[filename];
+}
+
+std::vector<std::vector<int>> RessourceManager::loadCSV(const std::string& filename)
+{
+    if (m_csvCache.contains(filename)) {
+        return m_csvCache[filename];
+    }
+
+    std::vector<std::vector<int>> result;
+
+    TCHAR buffer[MAX_PATH];
+    GetModuleFileName(NULL, buffer, MAX_PATH);
+    std::string basePath = std::filesystem::path(buffer).parent_path().string();
+
+    std::string fullPath = basePath + "\\" + filename;
+
+    std::ifstream file(fullPath);
+    if (!file.is_open()) {
+        std::cerr << "Erreur: impossible d'ouvrir " << fullPath << std::endl;
+        return result;
+    }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::vector<int> row;
+        std::stringstream ss(line);
+        std::string cell;
+
+        while (std::getline(ss, cell, ',')) {
+            row.push_back(std::stoi(cell));
+        }
+
+        result.push_back(row);
+    }
+
+    m_csvCache[filename] = result;
+
+    return result;
 }

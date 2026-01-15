@@ -5,7 +5,7 @@
 #include "Entity.h"
 #include "Renderer.h"
 #include "Transform.h"
-#include "Cube.h"
+#include "Tiles.h"
 #include "Rigidbody.h"
 #include "Player.h"
 #include "BoxCollider.h"
@@ -18,9 +18,14 @@ void Level1Scene::Init()
 	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
 	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\spritesheet_tiles.png");
 	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
+	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level1.csv");
 
-    //Init du background
-	for (float i = -100.f; i <= 4000.f; i += 800.f) {
+	const float tileSize = 32.f;
+	float actualPositionX = -280.f;
+	float actualPositionY = -200.f;
+
+	//Init du background
+	for (float i = -350.f; i <= 4000.f; i += 800.f) {
 		Entity* backgroundCloud = new Entity();
 		backgroundCloud->addComponent<Transform>()->setPosition({ i, -150.f });
 		backgroundCloud->addComponent(new Renderer(textureBackground));
@@ -41,14 +46,45 @@ void Level1Scene::Init()
 		this->AddEntity(backgroundGround);
 	}
 
+	/*for (int i = 0; i < 50; ++i){
+		Entity* cube = new Entity();
+		cube->addComponent<Transform>()->setPosition({ actualPositionX, actualPositionY + i * tileSize });
+		cube->addComponent(new Renderer(textureTile));
+		cube->addComponent<Tiles>()->Init(1);
+		this->AddEntity(cube);
+	}*/
+
 	//Init des plateformes
-	float actualPositionX = -200.f;
+	for (int y = 0; y < map.size(); ++y) {
 
-	CreateTilePlatform(actualPositionX, 20, 170.f, textureTile);
-	actualPositionX += 32.f * 20;
+		actualPositionX = -280.f;
 
-	CreateTilePlatform(actualPositionX + 32.f * 3, 4, 94.f, textureTile);
+		for (int x = 0; x < map[y].size(); ++x) {
+			int value = map[y][x];
 
+			if (value == 0) {
+				actualPositionX += tileSize;
+				continue;
+			};
+
+			// Grass Tile Plateforme (1)
+
+			if (x + 1 < map[y].size() && map[y][x + 1] == 1) {
+				int length = 2;
+				while (x + length < map[y].size() && map[y][x + length] == 1) {
+					length++;
+				}
+				CreateTilePlatform(value, actualPositionX, length, actualPositionY, textureTile);
+				actualPositionX += tileSize * length;
+				x += length - 1;
+				continue;
+			}
+			actualPositionX += tileSize;
+		}
+		actualPositionY += tileSize;
+	}
+
+	//Init du player
 	Entity* player = new Entity();
 	player->addComponent<Transform>()->setPosition({ 0.f, -90.f });
 	player->addComponent(new Renderer(texturePlayer));
@@ -78,7 +114,7 @@ void Level1Scene::Update(float deltaTime)
     AScene::Update(deltaTime);
 }
 
-void Level1Scene::CreateTilePlatform(float startX, int tilesNbrs, float y, sf::Texture* textureTile)
+void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, float y, sf::Texture* textureTile)
 {
 	const float tileSize = 32.f;
 	Entity* firstTile = nullptr;
@@ -88,11 +124,20 @@ void Level1Scene::CreateTilePlatform(float startX, int tilesNbrs, float y, sf::T
 		Entity* cube = new Entity();
 		cube->addComponent<Transform>()->setPosition({ i, y });
 		cube->addComponent(new Renderer(textureTile));
-		cube->addComponent<Cube>()->Init();
-
-		if (!firstTile) firstTile = cube;
-		lastTile = cube;
-
+		if (i == startX)
+		{
+			cube->addComponent<Tiles>()->Init(type);
+			firstTile = cube;
+		} 
+		else if (i >= startX + tileSize * tilesNbrs) 
+		{
+			cube->addComponent<Tiles>()->Init(type + 2);
+			lastTile = cube;
+		}
+		else 
+		{
+			cube->addComponent<Tiles>()->Init(type + 1);
+		}
 		this->AddEntity(cube);
 	}
 

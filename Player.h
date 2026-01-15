@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Ship.h"
 #include "Projectile.h"
 #include "AComponent.h"
 #include "ICollisionEvent.h"
