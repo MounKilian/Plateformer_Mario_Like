@@ -5,7 +5,8 @@
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "Application.h"
-#include "Cube.h"
+#include "ACollider.h"
+#include "ICollisionEvent.h"
 
 const float Physics::worldScale = 32.f;
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Projectile.h"
 #include "AComponent.h"
 #include "ICollisionEvent.h"
 #include <vector>
