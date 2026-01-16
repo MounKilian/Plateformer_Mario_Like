@@ -152,7 +152,7 @@ void Level1Scene::Init()
 
 void Level1Scene::Update(float deltaTime)
 {
-	//std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
+	std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
 	app->getView().setCenter({ m_player->getComponent<Transform>()->getPosition().x, 22.f});
 	app->getWindow().setView(app->getView());
 

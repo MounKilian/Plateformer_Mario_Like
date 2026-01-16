@@ -56,3 +56,9 @@ b2BodyId Rigidbody::getBody()
 {
 	return bodyId;
 }
+
+void Rigidbody::DestroyBody(b2BodyId bodyId)
+{
+	b2DestroyBody(bodyId);
+	this->bodyId = b2_nullBodyId;
+}

@@ -20,4 +20,5 @@ class Rigidbody : public AComponent
 		b2Vec2 getLinearVelocity();
 		float getAngularVelocity();
 		b2BodyId getBody();
+		void DestroyBody(b2BodyId bodyId);
 };

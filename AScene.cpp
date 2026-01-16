@@ -1,4 +1,5 @@
 #include "AScene.h"
+#include "Rigidbody.h"
 
 void AScene::AddEntity(Entity* entity)
 {
@@ -35,6 +36,9 @@ void AScene::Update(float deltaTime)
 	}
 	m_toAdd.clear();
 	for (Entity* entityToRemove : m_toRemove) {
+		if (entityToRemove->getComponent<Rigidbody>()) {
+			entityToRemove->getComponent<Rigidbody>()->DestroyBody(entityToRemove->getComponent<Rigidbody>()->getBody());
+		}
 		auto it = std::find(m_entities.begin(), m_entities.end(), entityToRemove);
 		if (it != m_entities.end()) {
 			m_entities.erase(it);

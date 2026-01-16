@@ -10,6 +10,7 @@
 #include "AScene.h"
 #include "ICollisionEvent.h"
 #include "Player.h"
+#include "BoxCollider.h"
 #include <iostream>
 
 void Ennemy::Init(int type)
@@ -48,9 +49,23 @@ void Ennemy::BeginCollision(ACollider* me, ACollider* other)
 {	
 	if (other->getParent()->getComponent<Player>())
     {
-        SceneManager* sceneManager = SceneManager::Instance();
-        AScene* scene = sceneManager->GetCurrentScene();
-        scene->RemoveEntity(other->getParent());
+		if (type == 1) {
+			SceneManager* sceneManager = SceneManager::Instance();
+			AScene* scene = sceneManager->GetCurrentScene();
+			scene->RemoveEntity(other->getParent());
+		}
+		else {
+			if (other->getParent()->getComponent<Transform>()->getPosition().y + 30.f <= parent->getComponent<Transform>()->getPosition().y) {
+				SceneManager* sceneManager = SceneManager::Instance();
+				AScene* scene = sceneManager->GetCurrentScene();
+				scene->RemoveEntity(parent);
+			}
+			else {
+				SceneManager* sceneManager = SceneManager::Instance();
+				AScene* scene = sceneManager->GetCurrentScene();
+				scene->RemoveEntity(other->getParent());
+			}
+		}
 	}
 	else {
 		dir.x = -dir.x;
