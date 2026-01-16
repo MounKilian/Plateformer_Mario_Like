@@ -17,6 +17,5 @@ class ACollider : public AComponent
 		void setDensity(float density);
 		void setFriction(float friction);
 		friend class Physics;
-		
 };
 

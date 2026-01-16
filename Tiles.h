@@ -3,11 +3,9 @@
 #include "AComponent.h"
 #include "ICollisionEvent.h"
 
-class Tiles : public AComponent, public ICollisionEvent
+class Tiles : public AComponent
 {
 	public:
 		void Init(int type);
-		void BeginCollision(ACollider* me, ACollider* other);
-		void EndCollision(ACollider* me, ACollider* other);
 };
 

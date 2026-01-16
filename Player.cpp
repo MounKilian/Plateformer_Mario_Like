@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "Rigidbody.h"
 #include "Physics.h"
+#include "Tiles.h"
+#include "AComponent.h"
 #include <iostream>
 
 void Player::Init()
@@ -62,5 +64,5 @@ void Player::BeginCollision(ACollider* me, ACollider* other)
 
 void Player::EndCollision(ACollider* me, ACollider* other)
 {
-
+	
 }

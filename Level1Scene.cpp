@@ -71,15 +71,28 @@ void Level1Scene::Init()
 			// Grass Tile Deco (4)
 			// Ocean Tile (7)
 			// Ocean Tile Mid (8)
+			// Grass Tile Plateform (9)
+			// Block Brick (12)
+			// Block Mystery (13)
+			// Spike (14)
+			// Exit (15)
+			// Bush (17)
+			// Plant (18)
+			// Exit Panel (19)
 
-			if (x + 1 < map[y].size() && map[y][x + 1] == value) {
+			if (x + 1 < map[y].size() && map[y][x + 1] == value && value != 12 && value != 13 && value != 14) {
 				int length = 2;
-				while (x + length < map[y].size() && map[y][x + length] == value) {
+				while (x + length < map[y].size() && map[y][x + length] == value ) {
 					length++;
 				}
 				CreateTilePlatform(value, actualPositionX, length, actualPositionY, textureTile);
 				actualPositionX += tileSize * length;
 				x += length - 1;
+				continue;
+			}
+			else {
+				CreateTilePlatform(value, actualPositionX, 1, actualPositionY, textureTile);
+				actualPositionX += tileSize;
 				continue;
 			}
 			actualPositionX += tileSize;
@@ -124,62 +137,92 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 	Entity* lastTile = nullptr;
 	bool isPhysics = false;
 
-	if (type == 1 || type == 4) {
+	if (type == 1 || type == 4 || type == 9 || type == 12 || type == 13 || type == 14) {
 		isPhysics = true;
 	}
 
-	for (float i = startX; i <= startX + tileSize * tilesNbrs; i += tileSize) {
-		if (isPhysics) {
+	if (tilesNbrs == 1) {
+		Entity* cube = new Entity();
+		cube->addComponent<Transform>()->setPosition({ startX, y });
+		cube->addComponent(new Renderer(textureTile));
+		cube->addComponent<Tiles>()->Init(type);
+		this->AddEntity(cube);
+		firstTile = cube;
+	}
+	else 
+	{
+		for (float i = 0; i < tilesNbrs; ++i) {
+			float x = startX + i * tileSize;
+
 			Entity* cube = new Entity();
-			cube->addComponent<Transform>()->setPosition({ i, y });
+			cube->addComponent<Transform>()->setPosition({ x, y });
 			cube->addComponent(new Renderer(textureTile));
-			if (i == startX)
-			{
+
+			if (isPhysics) {
+				if (i == 0)
+				{
+					cube->addComponent<Tiles>()->Init(type);
+					firstTile = cube;
+				}
+				else if (i == tilesNbrs - 1)
+				{
+					cube->addComponent<Tiles>()->Init(type + 2);
+					lastTile = cube;
+				}
+				else
+				{
+					cube->addComponent<Tiles>()->Init(type + 1);
+				}
+			}
+			else {
 				cube->addComponent<Tiles>()->Init(type);
-				firstTile = cube;
 			}
-			else if (i >= startX + tileSize * tilesNbrs)
-			{
-				cube->addComponent<Tiles>()->Init(type + 2);
-				lastTile = cube;
-			}
-			else
-			{
-				cube->addComponent<Tiles>()->Init(type + 1);
-			}
-			this->AddEntity(cube);
-		}
-		else {
-			Entity* cube = new Entity();
-			cube->addComponent<Transform>()->setPosition({ i, y });
-			cube->addComponent(new Renderer(textureTile));
-			cube->addComponent<Tiles>()->Init(type);
-			this->AddEntity(cube);
+		this->AddEntity(cube);
 		}
 	}
 
-	if (isPhysics) {
-		float firstX = firstTile->getComponent<Transform>()->getPosition().x;
-		float lastX = lastTile->getComponent<Transform>()->getPosition().x;
+	if (tilesNbrs == 1) {
+		if (isPhysics) {
+			float x = firstTile->getComponent<Transform>()->getPosition().x;
+			Entity* ground = new Entity();
+			ground->addComponent<Transform>()->setPosition({ x, y });
 
-		float leftEdge = firstX - tileSize / 2.f;
-		float rightEdge = lastX + tileSize / 2.f;
+			Rigidbody* groundRb = ground->addComponent<Rigidbody>();
+			groundRb->Init(app->getPhysicsWorld()->getWorld());
+			groundRb->setBodyType(b2_staticBody);
 
-		float groundWidth = rightEdge - leftEdge - tileSize;
-		float groundCenter = (leftEdge + rightEdge) / 2.f;
+			BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
+			groundCollider->setSize({ tileSize, tileSize });
+			groundCollider->setFriction(0.8f);
+			groundCollider->Init(groundRb);
+			this->AddEntity(ground);
+		}
+	}
+	else 
+	{
+		if (isPhysics) {
+			float firstX = firstTile->getComponent<Transform>()->getPosition().x;
+			float lastX = lastTile->getComponent<Transform>()->getPosition().x;
 
-		Entity* ground = new Entity();
-		ground->addComponent<Transform>()->setPosition({ groundCenter, y });
+			float leftEdge = firstX - tileSize / 2.f;
+			float rightEdge = lastX + tileSize / 2.f;
 
-		Rigidbody* groundRb = ground->addComponent<Rigidbody>();
-		groundRb->Init(app->getPhysicsWorld()->getWorld());
-		groundRb->setBodyType(b2_staticBody);
+			float groundWidth = rightEdge - leftEdge - tileSize;
+			float groundCenter = (leftEdge + rightEdge) / 2.f;
 
-		BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
-		groundCollider->setSize({ groundWidth, tileSize });
-		groundCollider->setFriction(0.8f);
-		groundCollider->Init(groundRb);
+			Entity* ground = new Entity();
+			ground->addComponent<Transform>()->setPosition({ groundCenter, y });
 
-		this->AddEntity(ground);
+			Rigidbody* groundRb = ground->addComponent<Rigidbody>();
+			groundRb->Init(app->getPhysicsWorld()->getWorld());
+			groundRb->setBodyType(b2_staticBody);
+
+			BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
+			groundCollider->setSize({ groundWidth, tileSize });
+			groundCollider->setFriction(0.8f);
+			groundCollider->Init(groundRb);
+
+			this->AddEntity(ground);
+		}
 	}
 }
