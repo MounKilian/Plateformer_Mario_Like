@@ -192,7 +192,12 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 			groundRb->setBodyType(b2_staticBody);
 
 			BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
-			groundCollider->setSize({ tileSize, tileSize });
+			if (type == 14) {
+				groundCollider->setSize({ tileSize, tileSize / 2.f - 8.f });
+			}
+			else {
+				groundCollider->setSize({ tileSize, tileSize });
+			}
 			groundCollider->setFriction(0.8f);
 			groundCollider->Init(groundRb);
 			this->AddEntity(ground);
@@ -207,7 +212,7 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 			float leftEdge = firstX - tileSize / 2.f;
 			float rightEdge = lastX + tileSize / 2.f;
 
-			float groundWidth = rightEdge - leftEdge - tileSize;
+			float groundWidth = rightEdge - leftEdge;
 			float groundCenter = (leftEdge + rightEdge) / 2.f;
 
 			Entity* ground = new Entity();
