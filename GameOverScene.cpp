@@ -49,12 +49,20 @@ void GameOverScene::Init()
 	this->AddEntity(gameOverText);
 
     Entity* replayText = new Entity();
-    replayText->addComponent<Transform>()->setPosition({ 0.f, 0.f });
+    replayText->addComponent<Transform>()->setPosition({ 0.f, 40.f });
     replayText->addComponent(new TextRenderer(font));
     replayText->getComponent<TextRenderer>()->setString("Press R to Replay");
     replayText->getComponent<TextRenderer>()->setFillColor(sf::Color::Black);
     replayText->getComponent<TextRenderer>()->setCharacterSize(32);
     this->AddEntity(replayText);
+
+    Entity* quitText = new Entity();
+    quitText->addComponent<Transform>()->setPosition({ 0.f, 80.f });
+    quitText->addComponent(new TextRenderer(font));
+    quitText->getComponent<TextRenderer>()->setString("Press Q to Quit");
+    quitText->getComponent<TextRenderer>()->setFillColor(sf::Color::Black);
+    quitText->getComponent<TextRenderer>()->setCharacterSize(32);
+    this->AddEntity(quitText);
 }
 
 void GameOverScene::Update(float deltaTime)
@@ -66,5 +74,9 @@ void GameOverScene::Update(float deltaTime)
         SceneManager* sceneManager = SceneManager::Instance();
         sceneManager->ClearScene();
         sceneManager->ChangeScene("Level1");
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+    {
+        Application::Instance()->getWindow().close();
     }
 }
