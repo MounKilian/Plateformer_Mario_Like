@@ -7,6 +7,7 @@ D:\C++\ConsoleApplication3\ConsoleApplication3\BoxCollider.cpp;D:\C++\ConsoleApp
 D:\C++\ConsoleApplication3\ConsoleApplication3\ConsoleApplication3.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\ConsoleApplication3.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Ennemy.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Ennemy.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Entity.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Entity.obj
+D:\C++\ConsoleApplication3\ConsoleApplication3\GameOverScene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\GameOverScene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\ICollisionEvent.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\ICollisionEvent.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Level1Scene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Level1Scene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Map.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Map.obj
@@ -16,5 +17,6 @@ D:\C++\ConsoleApplication3\ConsoleApplication3\Renderer.cpp;D:\C++\ConsoleApplic
 D:\C++\ConsoleApplication3\ConsoleApplication3\RessourceManager.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\RessourceManager.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Rigidbody.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Rigidbody.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\SceneManager.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\SceneManager.obj
+D:\C++\ConsoleApplication3\ConsoleApplication3\TextRenderer.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\TextRenderer.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Tiles.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Tiles.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Transform.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Transform.obj

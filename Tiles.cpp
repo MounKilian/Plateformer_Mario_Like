@@ -86,10 +86,7 @@ void Tiles::BeginCollision(Entity* me, Entity* other)
 	if (other->getComponent<Player>())
 	{
 		if (type == 14) {
-			SceneManager* sceneManager = SceneManager::Instance();
-			AScene* scene = sceneManager->GetCurrentScene();
-			scene->RemoveEntity(other);
-			//GAME OVER
+			other->getComponent<Player>()->Death();
 		}
 	}
 }

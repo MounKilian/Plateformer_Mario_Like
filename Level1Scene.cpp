@@ -116,7 +116,7 @@ void Level1Scene::Init()
 
 	//Init des ennemies
 	Entity* ennemy = new Entity();
-	ennemy->addComponent<Transform>()->setPosition({ 1325.f, 143.f });
+	ennemy->addComponent<Transform>()->setPosition({ 1400.f, 123.f });
 	ennemy->addComponent(new Renderer(textureEnnemy));
 	ennemy->addComponent<Ennemy>()->Init(1);
 

@@ -15,5 +15,6 @@ class SceneManager
 		void AddScene(std::string id, AScene* scene);
 		void RemoveScene(std::string id, AScene* scene);
 		void ChangeScene(std::string id);
+		void ClearScene();
 };
 

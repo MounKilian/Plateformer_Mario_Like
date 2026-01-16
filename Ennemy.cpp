@@ -50,10 +50,7 @@ void Ennemy::BeginCollision(Entity* me, Entity* other)
 	if (other->getComponent<Player>())
     {
 		if (type == 1) {
-			SceneManager* sceneManager = SceneManager::Instance();
-			AScene* scene = sceneManager->GetCurrentScene();
-			scene->RemoveEntity(other);
-			//GAME OVER
+			other->getComponent<Player>()->Death();
 		}
 		else {
 			if (other->getComponent<Transform>()->getPosition().y + 30.f <= parent->getComponent<Transform>()->getPosition().y) {
@@ -62,10 +59,7 @@ void Ennemy::BeginCollision(Entity* me, Entity* other)
 				scene->RemoveEntity(parent);
 			}
 			else {
-				SceneManager* sceneManager = SceneManager::Instance();
-				AScene* scene = sceneManager->GetCurrentScene();
-				scene->RemoveEntity(other);
-				//GAME OVER
+				other->getComponent<Player>()->Death();
 			}
 		}
 	}

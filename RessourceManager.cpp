@@ -45,7 +45,6 @@ std::vector<std::vector<int>> RessourceManager::loadCSV(const std::string& filen
 
     std::ifstream file(fullPath);
     if (!file.is_open()) {
-        std::cerr << "Erreur: impossible d'ouvrir " << fullPath << std::endl;
         return result;
     }
 
@@ -66,4 +65,17 @@ std::vector<std::vector<int>> RessourceManager::loadCSV(const std::string& filen
     m_csvCache[filename] = result;
 
     return result;
+}
+
+sf::Font* RessourceManager::loadFont(const std::string& filename)
+{
+    if (!m_fontCache.contains(filename)) {
+        TCHAR buffer[MAX_PATH];
+        GetModuleFileName(NULL, buffer, MAX_PATH);
+
+        std::string filenameAboslute = std::filesystem::path(buffer).parent_path().string();
+        std::cout << "Loading font: " << filenameAboslute + "\\" + filename << std::endl;
+        m_fontCache[filename] = new sf::Font(filenameAboslute + "\\" + filename);
+    }
+    return m_fontCache[filename];
 }

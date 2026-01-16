@@ -55,12 +55,16 @@ void Player::Jump()
 
 void Player::Death()
 {
+	SceneManager* sceneManager = SceneManager::Instance();
+	sceneManager->ClearScene(); 
+	sceneManager->ChangeScene("GameOver");
+}
+
+void Player::DeadZone()
+{
 	if (parent->getComponent<Transform>()->getPosition().y > 300.f)
 	{
-		SceneManager* sceneManager = SceneManager::Instance();
-		AScene* scene = sceneManager->GetCurrentScene();
-		scene->RemoveEntity(parent);
-		//GAME OVER
+		Death();
 	}
 }
 
@@ -68,7 +72,7 @@ void Player::Update(float dt)
 {
 	Move(dt);
 	Jump();
-	Death();
+	DeadZone();
 }
  
 void Player::BeginCollision(Entity* me, Entity* other)

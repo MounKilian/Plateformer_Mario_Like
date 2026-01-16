@@ -10,6 +10,7 @@ class Player : public AComponent, public ICollisionEvent
 		void Init();
 		void Move(float deltaTime);
 		void Jump();
+		void DeadZone();
 		void Death();
 		void Update(float dt) override;
 		void BeginCollision(Entity* me, Entity* other) override;

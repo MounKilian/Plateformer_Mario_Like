@@ -30,3 +30,10 @@ void SceneManager::ChangeScene(std::string id)
 	currentScene = id;
 	scenes[currentScene]->Init();
 }
+
+void SceneManager::ClearScene()
+{
+	for (Entity* entity : GetCurrentScene()->GetEntities()) {
+		GetCurrentScene()->RemoveEntity(entity);
+	}
+}

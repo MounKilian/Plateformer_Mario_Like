@@ -12,6 +12,7 @@ class AScene : public sf::Drawable
 		std::vector<Entity*> m_toRemove;
 
 	public:
+	public:
 		virtual void Init() = 0;
 		void AddEntity(Entity* entity);
 		void RemoveEntity(Entity* entity);
