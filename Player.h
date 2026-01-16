@@ -11,6 +11,6 @@ class Player : public AComponent, public ICollisionEvent
 		void Move(float deltaTime);
 		void Jump();
 		void Update(float dt) override;
-		void BeginCollision(ACollider* me, ACollider* other) override;
-		void EndCollision(ACollider* me, ACollider* other) override;
+		void BeginCollision(Entity* me, Entity* other) override;
+		void EndCollision(Entity* me, Entity* other) override;
 };

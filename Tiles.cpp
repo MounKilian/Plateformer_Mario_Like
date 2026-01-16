@@ -2,12 +2,19 @@
 #include "Transform.h"
 #include "Renderer.h"
 #include "Entity.h"
+#include "SceneManager.h"
+#include "AScene.h"
+#include "ACollider.h"
+#include "ICollisionEvent.h"
+#include "Rigidbody.h"
+#include "Player.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
 void Tiles::Init(int type)
 {
+	this->type = type;
 	switch (type)
 	{
 		case 1: // First Grass Tile Ground
@@ -72,3 +79,23 @@ void Tiles::Init(int type)
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
 	parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
 }
+
+void Tiles::BeginCollision(Entity* me, Entity* other)
+{
+	std::cout << "Collision with Tile Type: " << type << std::endl;
+	if (other->getComponent<Player>())
+	{
+		if (type == 14) {
+			SceneManager* sceneManager = SceneManager::Instance();
+			AScene* scene = sceneManager->GetCurrentScene();
+			scene->RemoveEntity(other);
+			//GAME OVER
+		}
+	}
+}
+
+void Tiles::EndCollision(Entity* me, Entity* other)
+{
+	
+}
+

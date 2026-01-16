@@ -44,25 +44,25 @@ void Physics::Update(float deltaTime)
 	for (int i = 0; i < contactEvents.beginCount; i++)
 	{
 		b2ContactBeginTouchEvent beginEvent = contactEvents.beginEvents[i];
-		ACollider* colliderA = nullptr;
-		ACollider* colliderB = nullptr;
+		Entity* colliderA = nullptr;
+		Entity* colliderB = nullptr;
 
 		for (Entity* entity : scene->GetEntities()) {
 			if (ACollider* collider = entity->getComponent<ACollider>()) {
 				if (B2_ID_EQUALS(collider->shapeId, beginEvent.shapeIdA)) {
-					colliderA = collider;
+					colliderA = entity;
 				}
 				else if (B2_ID_EQUALS(collider->shapeId, beginEvent.shapeIdB)) {
-					colliderB = collider;
+					colliderB = entity;
 				}
 			}
 		}
 
 		if (colliderA && colliderB) {
-			if (auto event = colliderA->parent->getComponent<ICollisionEvent>())
+			if (auto event = colliderA->getComponent<ICollisionEvent>())
 				event->BeginCollision(colliderA, colliderB);
 
-			if (auto event = colliderB->parent->getComponent<ICollisionEvent>())
+			if (auto event = colliderB->getComponent<ICollisionEvent>())
 				event->BeginCollision(colliderB, colliderA);
 		}
 	}

@@ -152,7 +152,7 @@ void Level1Scene::Init()
 
 void Level1Scene::Update(float deltaTime)
 {
-	std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
+	//std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
 	app->getView().setCenter({ m_player->getComponent<Transform>()->getPosition().x, 22.f});
 	app->getWindow().setView(app->getView());
 
@@ -176,8 +176,25 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 		cube->addComponent<Transform>()->setPosition({ startX, y });
 		cube->addComponent(new Renderer(textureTile));
 		cube->addComponent<Tiles>()->Init(type);
+		if (isPhysics) {
+			float x = cube->getComponent<Transform>()->getPosition().x;
+			cube->addComponent<Transform>()->setPosition({ x, y });
+
+			Rigidbody* groundRb = cube->addComponent<Rigidbody>();
+			groundRb->Init(app->getPhysicsWorld()->getWorld());
+			groundRb->setBodyType(b2_staticBody);
+
+			BoxCollider* groundCollider = cube->addComponent<BoxCollider>();
+			if (type == 14) {
+				groundCollider->setSize({ tileSize, tileSize / 2.f - 8.f });
+			}
+			else {
+				groundCollider->setSize({ tileSize, tileSize });
+			}
+			groundCollider->setFriction(0.8f);
+			groundCollider->Init(groundRb);
+		}
 		this->AddEntity(cube);
-		firstTile = cube;
 	}
 	else 
 	{
@@ -209,32 +226,6 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 			}
 		this->AddEntity(cube);
 		}
-	}
-
-	if (tilesNbrs == 1) {
-		if (isPhysics) {
-			float x = firstTile->getComponent<Transform>()->getPosition().x;
-			Entity* ground = new Entity();
-			ground->addComponent<Transform>()->setPosition({ x, y });
-
-			Rigidbody* groundRb = ground->addComponent<Rigidbody>();
-			groundRb->Init(app->getPhysicsWorld()->getWorld());
-			groundRb->setBodyType(b2_staticBody);
-
-			BoxCollider* groundCollider = ground->addComponent<BoxCollider>();
-			if (type == 14) {
-				groundCollider->setSize({ tileSize, tileSize / 2.f - 8.f });
-			}
-			else {
-				groundCollider->setSize({ tileSize, tileSize });
-			}
-			groundCollider->setFriction(0.8f);
-			groundCollider->Init(groundRb);
-			this->AddEntity(ground);
-		}
-	}
-	else 
-	{
 		if (isPhysics) {
 			float firstX = firstTile->getComponent<Transform>()->getPosition().x;
 			float lastX = lastTile->getComponent<Transform>()->getPosition().x;
@@ -260,4 +251,5 @@ void Level1Scene::CreateTilePlatform(int type, float startX, int tilesNbrs, floa
 			this->AddEntity(ground);
 		}
 	}
+
 }

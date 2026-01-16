@@ -12,7 +12,7 @@ class Ennemy : public AComponent, public ICollisionEvent
 		void Init(int type);
 		void Move(float deltaTime);
 		void Update(float dt);
-		void BeginCollision(ACollider* me, ACollider* other) override;
-		void EndCollision(ACollider* me, ACollider* other) override;
+		void BeginCollision(Entity* me, Entity* other) override;
+		void EndCollision(Entity* me, Entity* other) override;
 };
 

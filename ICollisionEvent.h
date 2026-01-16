@@ -5,7 +5,7 @@
 class ICollisionEvent
 {
 	public:
-		virtual void BeginCollision(ACollider* me, ACollider* other) = 0;
-		virtual void EndCollision(ACollider* me, ACollider* other) = 0;
+		virtual void BeginCollision(Entity* me, Entity* other) = 0;
+		virtual void EndCollision(Entity* me, Entity* other) = 0;
 };
 

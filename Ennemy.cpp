@@ -45,17 +45,18 @@ void Ennemy::Update(float dt)
 	Move(dt);
 }
 
-void Ennemy::BeginCollision(ACollider* me, ACollider* other)
+void Ennemy::BeginCollision(Entity* me, Entity* other)
 {	
-	if (other->getParent()->getComponent<Player>())
+	if (other->getComponent<Player>())
     {
 		if (type == 1) {
 			SceneManager* sceneManager = SceneManager::Instance();
 			AScene* scene = sceneManager->GetCurrentScene();
-			scene->RemoveEntity(other->getParent());
+			scene->RemoveEntity(other);
+			//GAME OVER
 		}
 		else {
-			if (other->getParent()->getComponent<Transform>()->getPosition().y + 30.f <= parent->getComponent<Transform>()->getPosition().y) {
+			if (other->getComponent<Transform>()->getPosition().y + 30.f <= parent->getComponent<Transform>()->getPosition().y) {
 				SceneManager* sceneManager = SceneManager::Instance();
 				AScene* scene = sceneManager->GetCurrentScene();
 				scene->RemoveEntity(parent);
@@ -63,7 +64,8 @@ void Ennemy::BeginCollision(ACollider* me, ACollider* other)
 			else {
 				SceneManager* sceneManager = SceneManager::Instance();
 				AScene* scene = sceneManager->GetCurrentScene();
-				scene->RemoveEntity(other->getParent());
+				scene->RemoveEntity(other);
+				//GAME OVER
 			}
 		}
 	}
@@ -73,7 +75,7 @@ void Ennemy::BeginCollision(ACollider* me, ACollider* other)
 	}
 }
 
-void Ennemy::EndCollision(ACollider* me, ACollider* other)
+void Ennemy::EndCollision(Entity* me, Entity* other)
 {
 
 }

@@ -4,8 +4,8 @@
 #include "Entity.h"
 #include "Rigidbody.h"
 #include "Physics.h"
-#include "Tiles.h"
 #include "AComponent.h"
+#include "ACollider.h"
 #include <iostream>
 
 void Player::Init()
@@ -57,12 +57,12 @@ void Player::Update(float dt)
 	Jump();
 }
 
-void Player::BeginCollision(ACollider* me, ACollider* other)
+void Player::BeginCollision(Entity* me, Entity* other)
 {
-	std::cout << "Collision detected between Cube and another collider." << std::endl;
+	
 }
 
-void Player::EndCollision(ACollider* me, ACollider* other)
+void Player::EndCollision(Entity* me, Entity* other)
 {
 	
 }
