@@ -13,5 +13,6 @@ class AComponent : public sf::Drawable
 	public :
 		virtual void Update(float dt);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		Entity* getParent();
 };
 

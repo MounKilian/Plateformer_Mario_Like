@@ -8,6 +8,7 @@
 #include "Tiles.h"
 #include "Rigidbody.h"
 #include "Player.h"
+#include "Ennemy.h"
 #include "BoxCollider.h"
 
 Application* app = Application::Instance();
@@ -18,6 +19,7 @@ void Level1Scene::Init()
 	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
 	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\spritesheet_tiles.png");
 	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
+	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
 	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level1.csv");
 
 	const float tileSize = 32.f;
@@ -45,14 +47,6 @@ void Level1Scene::Init()
 		this->AddEntity(backgroundWhite);
 		this->AddEntity(backgroundGround);
 	}
-
-	/*for (int i = 0; i < 50; ++i){
-		Entity* cube = new Entity();
-		cube->addComponent<Transform>()->setPosition({ actualPositionX, actualPositionY + i * tileSize });
-		cube->addComponent(new Renderer(textureTile));
-		cube->addComponent<Tiles>()->Init(1);
-		this->AddEntity(cube);
-	}*/
 
 	//Init des plateformes
 	for (int y = 0; y < map.size(); ++y) {
@@ -102,7 +96,7 @@ void Level1Scene::Init()
 
 	//Init du player
 	Entity* player = new Entity();
-	player->addComponent<Transform>()->setPosition({ 500.f, -50.f });
+	player->addComponent<Transform>()->setPosition({ 430.f, 112.f });
 	player->addComponent(new Renderer(texturePlayer));
 	player->addComponent<Player>()->Init();
 
@@ -119,10 +113,46 @@ void Level1Scene::Init()
 	m_player = player;
 	
 	this->AddEntity(player);
+
+	//Init des ennemies
+	Entity* ennemy = new Entity();
+	ennemy->addComponent<Transform>()->setPosition({ 1325.f, 143.f });
+	ennemy->addComponent(new Renderer(textureEnnemy));
+	ennemy->addComponent<Ennemy>()->Init();
+
+	Rigidbody* ennemyRigidbody = ennemy->addComponent<Rigidbody>();
+	ennemyRigidbody->Init(app->getPhysicsWorld()->getWorld());
+	ennemyRigidbody->setBodyType(b2_dynamicBody);
+
+	BoxCollider* ennemyBoxCollider = ennemy->addComponent<BoxCollider>();
+	ennemyBoxCollider->setSize({ 32.f, 32.f });
+	ennemyBoxCollider->setDensity(1.f);
+	ennemyBoxCollider->setFriction(0.0f);
+	ennemyBoxCollider->Init(ennemyRigidbody);
+
+	this->AddEntity(ennemy);
+
+	Entity* ennemy2 = new Entity();
+	ennemy2->addComponent<Transform>()->setPosition({ 854.f, 112.f });
+	ennemy2->addComponent(new Renderer(textureEnnemy));
+	ennemy2->addComponent<Ennemy>()->Init();
+
+	Rigidbody* ennemyRigidbody2 = ennemy2->addComponent<Rigidbody>();
+	ennemyRigidbody2->Init(app->getPhysicsWorld()->getWorld());
+	ennemyRigidbody2->setBodyType(b2_dynamicBody);
+
+	BoxCollider* ennemyBoxCollider2 = ennemy2->addComponent<BoxCollider>();
+	ennemyBoxCollider2->setSize({ 32.f, 32.f });
+	ennemyBoxCollider2->setDensity(1.f);
+	ennemyBoxCollider2->setFriction(0.0f);
+	ennemyBoxCollider2->Init(ennemyRigidbody2);
+
+	this->AddEntity(ennemy2);
 }
 
 void Level1Scene::Update(float deltaTime)
 {
+	//std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
 	app->getView().setCenter({ m_player->getComponent<Transform>()->getPosition().x, 22.f});
 	app->getWindow().setView(app->getView());
 
