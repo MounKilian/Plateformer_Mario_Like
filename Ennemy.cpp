@@ -12,12 +12,21 @@
 #include "Player.h"
 #include <iostream>
 
-void Ennemy::Init()
+void Ennemy::Init(int type)
 {
-	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 0 }, { 64, 64 }));
+	this->type = type;
+	switch (type)
+	{
+		case 1: // Green Blob
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 389 }, { 64, 64 }));
+			break;
+		case 2: // Bee
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 195, 0 }, { 64, 64 }));
+			break;
+	}
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
 	parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
-    dir = { -1.f, 0.f };
+	dir.x = -1.f;
 }
 
 void Ennemy::Move(float deltaTime)
@@ -45,6 +54,7 @@ void Ennemy::BeginCollision(ACollider* me, ACollider* other)
 	}
 	else {
 		dir.x = -dir.x;
+		parent->getComponent<Transform>()->setScale({ -parent->getComponent<Transform>()->getScale().x, parent->getComponent<Transform>()->getScale().y});
 	}
 }
 

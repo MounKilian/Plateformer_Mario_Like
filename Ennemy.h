@@ -6,9 +6,10 @@
 class Ennemy : public AComponent, public ICollisionEvent
 {
 	sf::Vector2f dir;
+	int type;
 
 	public:
-		void Init();
+		void Init(int type);
 		void Move(float deltaTime);
 		void Update(float dt);
 		void BeginCollision(ACollider* me, ACollider* other) override;

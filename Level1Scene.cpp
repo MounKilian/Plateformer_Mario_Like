@@ -118,7 +118,7 @@ void Level1Scene::Init()
 	Entity* ennemy = new Entity();
 	ennemy->addComponent<Transform>()->setPosition({ 1325.f, 143.f });
 	ennemy->addComponent(new Renderer(textureEnnemy));
-	ennemy->addComponent<Ennemy>()->Init();
+	ennemy->addComponent<Ennemy>()->Init(1);
 
 	Rigidbody* ennemyRigidbody = ennemy->addComponent<Rigidbody>();
 	ennemyRigidbody->Init(app->getPhysicsWorld()->getWorld());
@@ -135,7 +135,7 @@ void Level1Scene::Init()
 	Entity* ennemy2 = new Entity();
 	ennemy2->addComponent<Transform>()->setPosition({ 854.f, 112.f });
 	ennemy2->addComponent(new Renderer(textureEnnemy));
-	ennemy2->addComponent<Ennemy>()->Init();
+	ennemy2->addComponent<Ennemy>()->Init(2);
 
 	Rigidbody* ennemyRigidbody2 = ennemy2->addComponent<Rigidbody>();
 	ennemyRigidbody2->Init(app->getPhysicsWorld()->getWorld());
