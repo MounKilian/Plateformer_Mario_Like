@@ -10,8 +10,8 @@
 
 void Player::Init()
 {
-	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 256 }, { 128, 128 }));
-	parent->getComponent<Transform>()->setOrigin({ 64,64 });
+	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
+	parent->getComponent<Transform>()->setOrigin({ 62, 76 });
 	parent->getComponent<Transform>()->setScale({0.5f, 0.5f});
 }
 

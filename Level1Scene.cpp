@@ -111,7 +111,7 @@ void Level1Scene::Init()
 	rigidbody->setBodyType(b2_dynamicBody);
 
 	BoxCollider* boxCollider = player->addComponent<BoxCollider>();
-	boxCollider->setSize({ 64.f, 64.f });
+	boxCollider->setSize({ 32.f, 48.f });
 	boxCollider->setDensity(1.f);
 	boxCollider->setFriction(0.0f);
 	boxCollider->Init(rigidbody);
