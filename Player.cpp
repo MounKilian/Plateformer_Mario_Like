@@ -6,6 +6,8 @@
 #include "Physics.h"
 #include "AComponent.h"
 #include "ACollider.h"
+#include "SceneManager.h"
+#include "AScene.h"
 #include <iostream>
 
 void Player::Init()
@@ -51,12 +53,24 @@ void Player::Jump()
 	}
 }
 
+void Player::Death()
+{
+	if (parent->getComponent<Transform>()->getPosition().y > 300.f)
+	{
+		SceneManager* sceneManager = SceneManager::Instance();
+		AScene* scene = sceneManager->GetCurrentScene();
+		scene->RemoveEntity(parent);
+		//GAME OVER
+	}
+}
+
 void Player::Update(float dt)
 {
 	Move(dt);
 	Jump();
+	Death();
 }
-
+ 
 void Player::BeginCollision(Entity* me, Entity* other)
 {
 	
