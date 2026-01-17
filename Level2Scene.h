@@ -1,11 +1,9 @@
 #pragma once
 
-#include "AScene.h"
+#include "GameScene.h"
 
-class Level2Scene : public AScene
+class Level2Scene : public GameScene
 {
-	Entity* m_player;
-
 	public:
 		void Init();
 		void Update(float deltaTime);

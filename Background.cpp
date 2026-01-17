@@ -16,8 +16,12 @@ void Background::Init(int layout)
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 257, 514 }, { 256, 256 }));
 			break;
 
-		case 3 :
+		case 3 : // Level 1
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 515}, {256, 256}));
+			break;
+
+		case 4 : // Level 2
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 257, 257 }, { 256, 256 }));
 			break;
 	}
 

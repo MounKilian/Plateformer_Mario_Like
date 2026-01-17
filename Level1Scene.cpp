@@ -11,8 +11,6 @@
 #include "Ennemy.h"
 #include "BoxCollider.h"
 
-Application* app = Application::Instance();
-
 void Level1Scene::Init()
 {
 	RessourceManager* ressourceManager = RessourceManager::Instance();
@@ -22,7 +20,7 @@ void Level1Scene::Init()
 	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
 	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level1.csv");
 
-	CreateBackground(textureBackground);
+	CreateBackground(textureBackground, 3);
 
 	CreateMap(textureTile, map);
 
@@ -36,6 +34,8 @@ void Level1Scene::Init()
 
 void Level1Scene::Update(float deltaTime)
 {
+	Application* app = Application::Instance();
+
 	//std::cout << "Player Position: (" << m_player->getComponent<Transform>()->getPosition().x << ", " << m_player->getComponent<Transform>()->getPosition().y << ")" << std::endl;
 	app->getView().setCenter({ m_player->getComponent<Transform>()->getPosition().x, 22.f});
 	app->getWindow().setView(app->getView());

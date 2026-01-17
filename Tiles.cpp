@@ -74,6 +74,42 @@ void Tiles::Init(int type)
 		case 19: // Exit Panel
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 910, 390 }, { 64, 64 }));
 			break;
+		case 20: // Ocean Sand Tile
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 975, 325 }, { 64, 64 }));
+			break;
+		case 21: // Ocean Sand Tile Mid
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 910, 325 }, { 64, 64 }));
+			break;
+		case 22: // First Sand Tile Ground
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 910, 780 }, { 64, 64 }));
+			break;
+		case 23: // Sand Tile Ground
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 845, 780 }, { 64, 64 }));
+			break;
+		case 24: // Last Sand Tile Ground
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 975, 780 }, { 64, 64 }));
+			break;
+		case 25: // First Sand Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 715, 780 }, { 64, 64 }));
+			break;
+		case 26: // Sand Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 650, 780 }, { 64, 64 }));
+			break;
+		case 27: // Last Sand Tile Deco
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 780, 780 }, { 64, 64 }));
+			break;
+		case 28: // First Sand Tile Plateform
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 845 }, { 64, 64 }));
+			break;
+		case 29: // Sand Tile Plateform
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 65, 845 }, { 64, 64 }));
+			break;
+		case 30: // Last Sand Tile Plateform
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 130, 845 }, { 64, 64 }));
+			break;
+		case 31: // Cactus
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 910, 65 }, { 64, 64 }));
+			break;
 	}
 
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });

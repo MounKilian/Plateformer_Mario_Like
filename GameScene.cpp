@@ -27,7 +27,7 @@ void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::Vector2f spawn)
 	BoxCollider* boxCollider = player->addComponent<BoxCollider>();
 	boxCollider->setSize({ 32.f, 48.f });
 	boxCollider->setDensity(1.f);
-	boxCollider->setFriction(0.0f);
+	boxCollider->setFriction(0.8f);
 	boxCollider->Init(rigidbody);
 
 	m_player = player;
@@ -68,7 +68,7 @@ void GameScene::CreateTilePlatform(int type, float startX, int tilesNbrs, float 
 	Entity* lastTile = nullptr;
 	bool isPhysics = false;
 
-	if (type == 1 || type == 4 || type == 9 || type == 12 || type == 13 || type == 14) {
+	if (type == 1 || type == 4 || type == 9 || type == 12 || type == 13 || type == 14 || type == 15 || type == 22 || type == 25 || type == 28) {
 		isPhysics = true;
 	}
 
@@ -154,11 +154,11 @@ void GameScene::CreateTilePlatform(int type, float startX, int tilesNbrs, float 
 	}
 }
 
-void GameScene::CreateBackground(sf::Texture* textureBackground)
+void GameScene::CreateBackground(sf::Texture* textureBackground, int type)
 {
 	SceneManager* scene = SceneManager::Instance();
 
-	for (float i = -350.f; i <= 3000.f; i += 800.f) {
+	for (float i = -350.f; i <= 4000.f; i += 800.f) {
 		Entity* backgroundCloud = new Entity();
 		backgroundCloud->addComponent<Transform>()->setPosition({ i, -150.f });
 		backgroundCloud->addComponent(new Renderer(textureBackground));
@@ -172,7 +172,7 @@ void GameScene::CreateBackground(sf::Texture* textureBackground)
 		Entity* backgroundGround = new Entity();
 		backgroundGround->addComponent<Transform>()->setPosition({ i, 150.f });
 		backgroundGround->addComponent(new Renderer(textureBackground));
-		backgroundGround->addComponent<Background>()->Init(3);
+		backgroundGround->addComponent<Background>()->Init(type);
 
 		scene->GetCurrentScene()->AddEntity(backgroundCloud);
 		scene->GetCurrentScene()->AddEntity(backgroundWhite);
@@ -210,6 +210,12 @@ void GameScene::CreateMap(sf::Texture* textureTile, std::vector<std::vector<int>
 			// Bush (17)
 			// Plant (18)
 			// Exit Panel (19)
+			// Ocean Sand Tile (20)
+			// Ocean Sand Tile Mid (21)
+			// Sand Tile Ground (22)
+			// Sand Tile Deco (25)
+			// Sand Tile Plateform (28)
+			// Cactus (31)
 
 			if (x + 1 < map[y].size() && map[y][x + 1] == value && value != 12 && value != 13 && value != 14) {
 				int length = 2;

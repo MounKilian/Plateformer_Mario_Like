@@ -6,6 +6,8 @@
 
 class Player : public AComponent, public ICollisionEvent
 {
+	bool isJumping; 
+
 	public :
 		void Init();
 		void Move(float deltaTime);
