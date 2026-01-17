@@ -15,7 +15,7 @@ Application* Application::Instance()
 
 void Application::Init()
 {
-	physicsWorld = new Physics({ 0.0f, 10.0f });
+	physicsWorld = new Physics({ 0.0f, 15.0f });
 	m_window.create(sf::VideoMode({ 1200, 900 }), "Plateformer");
 	m_window.setFramerateLimit(60);
 

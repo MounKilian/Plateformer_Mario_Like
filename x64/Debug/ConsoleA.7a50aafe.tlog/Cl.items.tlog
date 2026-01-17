@@ -8,6 +8,7 @@ D:\C++\ConsoleApplication3\ConsoleApplication3\ConsoleApplication3.cpp;D:\C++\Co
 D:\C++\ConsoleApplication3\ConsoleApplication3\Ennemy.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Ennemy.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Entity.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Entity.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\GameOverScene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\GameOverScene.obj
+D:\C++\ConsoleApplication3\ConsoleApplication3\GameScene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\GameScene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\ICollisionEvent.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\ICollisionEvent.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Level1Scene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Level1Scene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Level2Scene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Level2Scene.obj

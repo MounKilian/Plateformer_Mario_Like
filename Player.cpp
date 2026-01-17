@@ -8,6 +8,9 @@
 #include "ACollider.h"
 #include "SceneManager.h"
 #include "AScene.h"
+#include "BoxCollider.h"
+#include "Application.h"
+#include "SceneManager.h"
 #include <iostream>
 
 void Player::Init()
@@ -40,7 +43,7 @@ void Player::Move(float deltaTime)
 
 void Player::Jump()
 {
-	float jumpForce = 7.5f;
+	float jumpForce = 8.f;
 
 	Rigidbody* rb = parent->getComponent<Rigidbody>();
 
