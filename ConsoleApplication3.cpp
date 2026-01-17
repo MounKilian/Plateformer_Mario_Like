@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "Level1Scene.h"
 #include "GameOverScene.h"
+#include "MenuScene.h"
 
 int main()
 {
@@ -12,13 +13,15 @@ int main()
 
 	Level1Scene* level1Scene = new Level1Scene;
 	GameOverScene* gameOverScene = new GameOverScene;
+	MenuScene* menuScene = new MenuScene;
 
 	SceneManager* sceneManager = SceneManager::Instance();
 
 	sceneManager->AddScene("Level1", level1Scene);
 	sceneManager->AddScene("GameOver", gameOverScene);
+	sceneManager->AddScene("Menu", menuScene);
 
-	sceneManager->ChangeScene("Level1");
+	sceneManager->ChangeScene("Menu");
 
 	app->Loop();
 }

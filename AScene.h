@@ -19,4 +19,5 @@ class AScene : public sf::Drawable
 		virtual void Update(float dt);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		std::vector<Entity*> GetEntities();
+
 };

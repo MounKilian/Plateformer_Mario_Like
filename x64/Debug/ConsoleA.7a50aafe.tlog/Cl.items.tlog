@@ -10,7 +10,9 @@ D:\C++\ConsoleApplication3\ConsoleApplication3\Entity.cpp;D:\C++\ConsoleApplicat
 D:\C++\ConsoleApplication3\ConsoleApplication3\GameOverScene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\GameOverScene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\ICollisionEvent.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\ICollisionEvent.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Level1Scene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Level1Scene.obj
+D:\C++\ConsoleApplication3\ConsoleApplication3\Level2Scene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Level2Scene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Map.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Map.obj
+D:\C++\ConsoleApplication3\ConsoleApplication3\MenuScene.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\MenuScene.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Physics.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Physics.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Player.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Player.obj
 D:\C++\ConsoleApplication3\ConsoleApplication3\Renderer.cpp;D:\C++\ConsoleApplication3\ConsoleApplication3\x64\Debug\Renderer.obj
