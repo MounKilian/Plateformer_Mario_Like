@@ -77,3 +77,13 @@ void Player::Update(float dt)
 	Jump();
 	DeadZone();
 }
+ 
+void Player::BeginCollision(Entity* me, Entity* other)
+{
+	
+}
+
+void Player::EndCollision(Entity* me, Entity* other)
+{
+	
+}

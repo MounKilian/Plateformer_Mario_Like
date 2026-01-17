@@ -24,6 +24,12 @@ void Ennemy::Init(int type)
 		case 2: // Bee
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 195, 0 }, { 64, 64 }));
 			break;
+		case 3: // Red Blob
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 324 }, { 64, 64 }));
+			break;
+		case 4: // Fly
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 130, 130 }, { 64, 64 }));
+			break;
 	}
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
 	parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
@@ -49,7 +55,7 @@ void Ennemy::BeginCollision(Entity* me, Entity* other)
 {	
 	if (other->getComponent<Player>())
     {
-		if (type == 1) {
+		if (type == 1 || type == 3) {
 			other->getComponent<Player>()->Death();
 		}
 		else {

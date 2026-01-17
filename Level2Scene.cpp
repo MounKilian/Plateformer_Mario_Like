@@ -26,10 +26,11 @@ void Level2Scene::Init()
 
 	CreatePlayer(texturePlayer, { 430.f, 112.f });
 
-	// GreenBlob (1)
-	// Bee (2)
-	//CreateEnnemy(textureEnnemy, { 854.f, 112.f }, 2);
-	//CreateEnnemy(textureEnnemy, { 1400.f, 123.f }, 1);
+	// RedBlob (3)
+	// Fly (4)
+	CreateEnnemy(textureEnnemy, { 1397.f, 144.f }, 4);
+	CreateEnnemy(textureEnnemy, { 1844.f, 144.f }, 3);
+	CreateEnnemy(textureEnnemy, { 2120.f, 48.f }, 4);
 }
 
 void Level2Scene::Update(float deltaTime)
