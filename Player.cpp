@@ -25,7 +25,7 @@ void Player::Init()
 
 void Player::Move(float deltaTime)
 {
-	float speed = 120.f;
+	float speed = 110.f;
 	Rigidbody* rb = parent->getComponent<Rigidbody>();
 
 	sf::Vector2f dir;
