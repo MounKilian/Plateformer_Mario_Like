@@ -4,6 +4,7 @@
 #include "Level1Scene.h"
 #include "Level2Scene.h"
 #include "GameOverScene.h"
+#include "RessourceManager.h"
 #include "MenuScene.h"
 
 Application* Application::m_instance = nullptr;
@@ -28,6 +29,12 @@ void Application::Init()
 	m_view.zoom(0.5);
 	m_view.setCenter({ 0.f,0.f });
 	m_window.setView(m_view);
+
+	RessourceManager* ressources = RessourceManager::Instance();
+	std::string musicPath = ressources->getMusicPath("Assets\\music.wav");
+	sf::Music* music = new sf::Music(musicPath);
+	music->setLooping(true);
+	music->play();
 
 	Level1Scene* level1Scene = new Level1Scene;
 	Level2Scene* level2Scene = new Level2Scene;

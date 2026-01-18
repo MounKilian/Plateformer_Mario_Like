@@ -92,3 +92,12 @@ sf::Font* RessourceManager::loadFont(const std::string& filename)
     }
     return m_fontCache[filename];
 }
+
+std::string RessourceManager::getMusicPath(const std::string& filename)
+{
+    TCHAR buffer[MAX_PATH];
+    GetModuleFileName(NULL, buffer, MAX_PATH);
+
+    std::string basePath = std::filesystem::path(buffer).parent_path().string();
+    return basePath + "\\" + filename;
+}

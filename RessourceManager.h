@@ -18,5 +18,6 @@ class RessourceManager
 		sf::SoundBuffer* loadsound(const std::string& filename);
 		std::vector<std::vector<int>> loadCSV(const std::string& filepath);
 		sf::Font* loadFont(const std::string& filename);
+		std::string getMusicPath(const std::string& filename);
 };
 
