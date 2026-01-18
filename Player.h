@@ -7,6 +7,9 @@
 class Player : public AComponent, public ICollisionEvent
 {
 	bool isJumping; 
+	bool anim;
+	float animTimer;
+	float animSpeed;
 
 	public :
 		void Init();

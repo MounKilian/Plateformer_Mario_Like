@@ -18,6 +18,9 @@ void Player::Init()
 	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
 	parent->getComponent<Transform>()->setOrigin({ 62, 76 });
 	parent->getComponent<Transform>()->setScale({0.5f, 0.5f});
+	anim = true;
+	animSpeed = 0.10f;
+	animTimer = 0.f;
 }
 
 void Player::Move(float deltaTime)
@@ -37,10 +40,33 @@ void Player::Move(float deltaTime)
 		parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
 	}
 
+	b2Vec2 velocity = rb->getLinearVelocity();
+
+	if (dir.x != 0 && std::abs(velocity.y) < 0.01f) {
+		animTimer += deltaTime;
+		if (animTimer >= animSpeed) {
+			if (anim) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 258, 258 }, { 124, 152 }));
+				anim = false;
+			}
+			else {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
+				anim = true;
+			}
+			animTimer = 0.f;
+		}
+	}
+	else if (std::abs(velocity.y) > 0.01f) {
+		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 387, 258 }, { 124, 152 }));
+	} 
+	else {
+		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
+		anim = true;
+	}
+
 	if (dir.x == 0)
 		return ;
 
-	b2Vec2 velocity = rb->getLinearVelocity();
 	velocity.x = dir.x * speed / Physics::worldScale;
 	rb->setLinearVelocity(velocity);
 }
