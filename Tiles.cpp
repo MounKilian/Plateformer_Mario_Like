@@ -111,6 +111,9 @@ void Tiles::Init(int type)
 		case 31: // Cactus
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 910, 65 }, { 64, 64 }));
 			break;
+		case 32: // Coins
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 130 }, { 64, 64 }));
+			break;
 	}
 
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
@@ -141,6 +144,12 @@ void Tiles::BeginCollision(Entity* me, Entity* other)
 			parent->getComponent<Sound>()->Play();
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 325, 0 }, { 64, 64 }));
 			type = 0;
+		}
+		if (type == 32) {
+			parent->getComponent<Sound>()->Play();
+			SceneManager* sceneManager = SceneManager::Instance();
+			AScene* scene = sceneManager->GetCurrentScene();
+			scene->RemoveEntity(parent);
 		}
 	}
 }

@@ -71,7 +71,7 @@ void GameScene::CreateTilePlatform(sf::SoundBuffer* soundCoin, int type, float s
 	Entity* lastTile = nullptr;
 	bool isPhysics = false;
 
-	if (type == 1 || type == 4 || type == 9 || type == 12 || type == 13 || type == 14 || type == 15 || type == 22 || type == 25 || type == 28) {
+	if (type == 1 || type == 4 || type == 9 || type == 12 || type == 13 || type == 14 || type == 15 || type == 22 || type == 25 || type == 28 || type == 32 ) {
 		isPhysics = true;
 	}
 
@@ -80,7 +80,7 @@ void GameScene::CreateTilePlatform(sf::SoundBuffer* soundCoin, int type, float s
 		cube->addComponent<Transform>()->setPosition({ startX, y });
 		cube->addComponent(new Renderer(textureTile));
 		cube->addComponent<Tiles>()->Init(type);
-		if (type == 13) {
+		if (type == 13 || type == 32) {
 			cube->addComponent(new Sound(soundCoin));
 		}
 		if (isPhysics) {
@@ -98,6 +98,7 @@ void GameScene::CreateTilePlatform(sf::SoundBuffer* soundCoin, int type, float s
 			else {
 				groundCollider->setSize({ tileSize, tileSize });
 			}
+
 			groundCollider->setFriction(0.8f);
 			groundCollider->Init(groundRb);
 		}
@@ -207,7 +208,7 @@ void GameScene::CreateMap(sf::Texture* textureTile, sf::SoundBuffer* soundCoin, 
 				continue;
 			};
 
-			if (x + 1 < map[y].size() && map[y][x + 1] == value && value != 12 && value != 13 && value != 14) {
+			if (x + 1 < map[y].size() && map[y][x + 1] == value && value != 12 && value != 13 && value != 14 && value != 32) {
 				int length = 2;
 				while (x + length < map[y].size() && map[y][x + length] == value) {
 					length++;
