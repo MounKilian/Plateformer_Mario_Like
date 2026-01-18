@@ -18,9 +18,9 @@ void MenuScene::Init()
     app->getWindow().setView(app->getView());
     auto& view = app->getView();
     RessourceManager* ressourceManager = RessourceManager::Instance();
-    sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
-    sf::Font* font = ressourceManager->loadFont("Assets\\JungleAdventurer.ttf");
-    sf::SoundBuffer* soundSelect = ressourceManager->loadsound("Assets\\sfx_select.ogg");
+    sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\SpriteSheet\\background.png");
+    sf::Font* font = ressourceManager->loadFont("Assets\\Font\\JungleAdventurer.ttf");
+    sf::SoundBuffer* soundSelect = ressourceManager->loadsound("Assets\\Sound\\sfx_select.ogg");
 
 
     Entity* backgroundCloud = new Entity();

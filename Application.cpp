@@ -31,7 +31,7 @@ void Application::Init()
 	m_window.setView(m_view);
 
 	RessourceManager* ressources = RessourceManager::Instance();
-	std::string musicPath = ressources->getMusicPath("Assets\\music.wav");
+	std::string musicPath = ressources->getMusicPath("Assets\\Sound\\music.wav");
 	sf::Music* music = new sf::Music(musicPath);
 	music->setLooping(true);
 	music->play();

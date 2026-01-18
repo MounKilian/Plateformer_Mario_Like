@@ -14,14 +14,14 @@
 void Level2Scene::Init()
 {
 	RessourceManager* ressourceManager = RessourceManager::Instance();
-	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
-	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\spritesheet_tiles.png");
-	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
-	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
-	sf::SoundBuffer* soundPlayer = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
-	sf::SoundBuffer* soundEnnemy = ressourceManager->loadsound("Assets\\sfx_hurt.ogg");
-	sf::SoundBuffer* soundCoin = ressourceManager->loadsound("Assets\\sfx_coin.ogg");
-	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level2.csv");
+	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\SpriteSheet\\background.png");
+	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\SpriteSheet\\tiles.png");
+	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\SpriteSheet\\characters.png");
+	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\SpriteSheet\\enemies.png");
+	sf::SoundBuffer* soundPlayer = ressourceManager->loadsound("Assets\\Sound\\sfx_jump.ogg");
+	sf::SoundBuffer* soundEnnemy = ressourceManager->loadsound("Assets\\Sound\\sfx_hurt.ogg");
+	sf::SoundBuffer* soundCoin = ressourceManager->loadsound("Assets\\Sound\\sfx_coin.ogg");
+	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\Level\\level2.csv");
 
 	CreateBackground(textureBackground, 4);
 

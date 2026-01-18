@@ -17,8 +17,8 @@
 void Player::Init()
 {
 	RessourceManager* ressourceManager = RessourceManager::Instance();
-	soundPlayerJump = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
-	soundPlayerDeath = ressourceManager->loadsound("Assets\\sfx_disappear.ogg");
+	soundPlayerJump = ressourceManager->loadsound("Assets\\Sound\\sfx_jump.ogg");
+	soundPlayerDeath = ressourceManager->loadsound("Assets\\Sound\\sfx_disappear.ogg");
 
 	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
 	parent->getComponent<Transform>()->setOrigin({ 62, 76 });
