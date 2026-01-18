@@ -2,29 +2,10 @@
 #include "AScene.h"
 #include "SceneManager.h"
 #include "Application.h"
-#include "Level1Scene.h"
-#include "Level2Scene.h"
-#include "GameOverScene.h"
-#include "MenuScene.h"
 
 int main()
 {
 	Application* app = Application::Instance();
     app->Init();
-
-	Level1Scene* level1Scene = new Level1Scene;
-	Level2Scene* level2Scene = new Level2Scene;
-	GameOverScene* gameOverScene = new GameOverScene;
-	MenuScene* menuScene = new MenuScene;
-
-	SceneManager* sceneManager = SceneManager::Instance();
-
-	sceneManager->AddScene("Level1", level1Scene);
-	sceneManager->AddScene("Level2", level2Scene);
-	sceneManager->AddScene("GameOver", gameOverScene);
-	sceneManager->AddScene("Menu", menuScene);
-
-	sceneManager->ChangeScene("Menu");
-
 	app->Loop();
 }

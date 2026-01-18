@@ -198,25 +198,6 @@ void GameScene::CreateMap(sf::Texture* textureTile, std::vector<std::vector<int>
 				continue;
 			};
 
-			// Grass Tile Ground (1)
-			// Grass Tile Deco (4)
-			// Ocean Tile (7)
-			// Ocean Tile Mid (8)
-			// Grass Tile Plateform (9)
-			// Block Brick (12)
-			// Block Mystery (13)
-			// Spike (14)
-			// Exit (15)
-			// Bush (17)
-			// Plant (18)
-			// Exit Panel (19)
-			// Ocean Sand Tile (20)
-			// Ocean Sand Tile Mid (21)
-			// Sand Tile Ground (22)
-			// Sand Tile Deco (25)
-			// Sand Tile Plateform (28)
-			// Cactus (31)
-
 			if (x + 1 < map[y].size() && map[y][x + 1] == value && value != 12 && value != 13 && value != 14) {
 				int length = 2;
 				while (x + length < map[y].size() && map[y][x + length] == value) {

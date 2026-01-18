@@ -73,7 +73,13 @@ void GameOverScene::Update(float deltaTime)
     {
         SceneManager* sceneManager = SceneManager::Instance();
         sceneManager->ClearScene();
-        sceneManager->ChangeScene("Level1");
+
+        if (sceneManager->getLevel() == 1) {
+            sceneManager->ChangeScene("Level1");
+        }
+        else {
+            sceneManager->ChangeScene("Level2");
+        }
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
     {

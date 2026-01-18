@@ -1,7 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "Application.h"
 #include "SceneManager.h"
-#include "SceneManager.h"
+#include "Level1Scene.h"
+#include "Level2Scene.h"
+#include "GameOverScene.h"
+#include "MenuScene.h"
 
 Application* Application::m_instance = nullptr;
 
@@ -25,6 +28,21 @@ void Application::Init()
 	m_view.zoom(0.5);
 	m_view.setCenter({ 0.f,0.f });
 	m_window.setView(m_view);
+
+	Level1Scene* level1Scene = new Level1Scene;
+	Level2Scene* level2Scene = new Level2Scene;
+	GameOverScene* gameOverScene = new GameOverScene;
+	MenuScene* menuScene = new MenuScene;
+
+	SceneManager* sceneManager = SceneManager::Instance();
+	sceneManager->setLevel(1);
+
+	sceneManager->AddScene("Level1", level1Scene);
+	sceneManager->AddScene("Level2", level2Scene);
+	sceneManager->AddScene("GameOver", gameOverScene);
+	sceneManager->AddScene("Menu", menuScene);
+
+	sceneManager->ChangeScene("Menu");
 }
 
 void Application::Loop()

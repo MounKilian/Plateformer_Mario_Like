@@ -73,7 +73,7 @@ void MenuScene::Update(float deltaTime)
     {
         SceneManager* sceneManager = SceneManager::Instance();
         sceneManager->ClearScene();
-        sceneManager->ChangeScene("Level2");
+        sceneManager->ChangeScene("Level1");
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
     {

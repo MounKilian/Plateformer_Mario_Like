@@ -118,11 +118,23 @@ void Tiles::Init(int type)
 
 void Tiles::BeginCollision(Entity* me, Entity* other)
 {
-	std::cout << "Collision with Tile Type: " << type << std::endl;
 	if (other->getComponent<Player>())
 	{
 		if (type == 14) {
 			other->getComponent<Player>()->Death();
+		}
+		if (type == 15 || type == 16) {
+			SceneManager* sceneManager = SceneManager::Instance();
+			sceneManager->setLevel(sceneManager->getLevel()+1);
+			sceneManager->ClearScene();
+
+			if (sceneManager->getLevel() == 2) {
+				sceneManager->ChangeScene("Level2");
+			}
+			else {
+				sceneManager->setLevel(1);
+				sceneManager->ChangeScene("Menu");
+			}
 		}
 	}
 }

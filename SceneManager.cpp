@@ -15,6 +15,16 @@ AScene* SceneManager::GetCurrentScene()
     return scenes[currentScene];
 }
 
+int SceneManager::getLevel()
+{
+	return level;
+}
+
+void SceneManager::setLevel(int level)
+{
+	this->level = level;
+}
+
 void SceneManager::AddScene(std::string id, AScene* scene)
 {
 	scenes[id] = scene;
