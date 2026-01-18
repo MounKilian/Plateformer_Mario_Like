@@ -98,7 +98,7 @@ void Ennemy::BeginCollision(Entity* me, Entity* other)
 			other->getComponent<Player>()->Death();
 		}
 		else {
-			if (other->getComponent<Transform>()->getPosition().y + 30.f <= parent->getComponent<Transform>()->getPosition().y) {
+			if (other->getComponent<Transform>()->getPosition().y + 35.f <= parent->getComponent<Transform>()->getPosition().y) {
 				SceneManager* sceneManager = SceneManager::Instance();
 				AScene* scene = sceneManager->GetCurrentScene();
 				scene->RemoveEntity(parent);

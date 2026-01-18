@@ -136,6 +136,10 @@ void Tiles::BeginCollision(Entity* me, Entity* other)
 				sceneManager->ChangeScene("Menu");
 			}
 		}
+		if (type == 13) {
+			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 325, 0 }, { 64, 64 }));
+			type = 0;
+		}
 	}
 }
 
