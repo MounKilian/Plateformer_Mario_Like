@@ -27,8 +27,6 @@ void Level1Scene::Init()
 	CreateBackground(textureBackground, 3);
 
 	CreateMap(textureTile, soundCoin, map);
-
-	CreateUI(textureTile);
 	
 	CreatePlayer(texturePlayer, soundPlayer, { 430.f, 112.f });
 
@@ -36,6 +34,8 @@ void Level1Scene::Init()
 	// Bee (2)
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 854.f, 112.f }, 2);
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 1400.f, 123.f }, 1);
+	
+	CreateUI(textureTile);
 }
 
 void Level1Scene::Update(float deltaTime)

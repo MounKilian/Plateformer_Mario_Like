@@ -168,11 +168,13 @@ void Tiles::BeginCollision(Entity* me, Entity* other)
 		}
 		if (type == 13) {
 			parent->getComponent<Sound>()->Play();
+			other->getComponent<Player>()->setCoinNbrs(other->getComponent<Player>()->getCoinNbrs() + 1);
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 325, 0 }, { 64, 64 }));
 			type = 0;
 		}
 		if (type == 32) {
 			parent->getComponent<Sound>()->Play();
+			other->getComponent<Player>()->setCoinNbrs(other->getComponent<Player>()->getCoinNbrs() + 1);
 			SceneManager* sceneManager = SceneManager::Instance();
 			AScene* scene = sceneManager->GetCurrentScene();
 			scene->RemoveEntity(parent);

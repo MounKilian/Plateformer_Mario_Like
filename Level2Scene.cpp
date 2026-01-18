@@ -29,13 +29,13 @@ void Level2Scene::Init()
 
 	CreatePlayer(texturePlayer, soundPlayer,{ 430.f, 112.f });
 
-	CreateUI(textureTile);
-
 	// RedBlob (3)
 	// Fly (4)
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 1397.f, 144.f }, 4);
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 1844.f, 144.f }, 3);
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 2120.f, 48.f }, 4);
+	
+	CreateUI(textureTile);
 }
 
 void Level2Scene::Update(float deltaTime)

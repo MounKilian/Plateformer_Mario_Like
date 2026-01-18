@@ -1,7 +1,4 @@
-﻿  Application.cpp
-D:\C++\ConsoleApplication3\ConsoleApplication3\Application.cpp(26,12): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-  GameScene.cpp
-  Level1Scene.cpp
+﻿  Level1Scene.cpp
   Level2Scene.cpp
   Génération de code en cours...
   ConsoleApplication3.vcxproj -> D:\C++\ConsoleApplication3\x64\Debug\ConsoleApplication3.exe

@@ -26,6 +26,7 @@ void Player::Init()
 	anim = true;
 	animSpeed = 0.10f;
 	animTimer = 0.f;
+	coinNbrs = 0;
 }
 
 void Player::Move(float deltaTime)
@@ -128,4 +129,14 @@ void Player::BeginCollision(Entity* me, Entity* other)
 void Player::EndCollision(Entity* me, Entity* other)
 {
 	
+}
+
+void Player::setCoinNbrs(int coinNbrs)
+{
+	this->coinNbrs = coinNbrs;
+}
+
+int Player::getCoinNbrs()
+{
+	return coinNbrs;
 }

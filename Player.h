@@ -12,6 +12,7 @@ class Player : public AComponent, public ICollisionEvent
 	float animSpeed;
 	sf::SoundBuffer* soundPlayerJump;
 	sf::SoundBuffer* soundPlayerDeath;
+	int coinNbrs;
 
 	public :
 		void Init();
@@ -23,4 +24,6 @@ class Player : public AComponent, public ICollisionEvent
 		void Update(float dt) override;
 		void BeginCollision(Entity* me, Entity* other) override;
 		void EndCollision(Entity* me, Entity* other) override;
+		void setCoinNbrs(int coinNbrs);
+		int getCoinNbrs();
 };

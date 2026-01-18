@@ -235,24 +235,24 @@ void GameScene::CreateUI(sf::Texture* textureTile)
 	Entity* coinUI = new Entity();
 	coinUI->addComponent<Transform>()->setPosition({ 170.f, -160.f });
 	coinUI->addComponent(new Renderer(textureTile));
-	coinUI->addComponent<UICoins>()->Init(1);
+	coinUI->addComponent<UICoins>()->Init(1, m_player);
 	this->AddEntity(coinUI);
 
 	Entity* coinUI2 = new Entity();
 	coinUI2->addComponent<Transform>()->setPosition({ 200.f, -160.f });
 	coinUI2->addComponent(new Renderer(textureTile));
-	coinUI2->addComponent<UICoins>()->Init(2);
+	coinUI2->addComponent<UICoins>()->Init(2, m_player);
 	this->AddEntity(coinUI2);
 
 	Entity* coinUI3 = new Entity();
 	coinUI3->addComponent<Transform>()->setPosition({ 220.f, -160.f });
 	coinUI3->addComponent(new Renderer(textureTile));
-	coinUI3->addComponent<UICoins>()->Init(3);
+	coinUI3->addComponent<UICoins>()->Init(3, m_player);
 	this->AddEntity(coinUI3);
 
 	Entity* coinUI4 = new Entity();
 	coinUI4->addComponent<Transform>()->setPosition({ 240.f, -160.f });
 	coinUI4->addComponent(new Renderer(textureTile));
-	coinUI4->addComponent<UICoins>()->Init(4);
+	coinUI4->addComponent<UICoins>()->Init(4, m_player);
 	this->AddEntity(coinUI4);
 }
