@@ -17,6 +17,7 @@ class Player : public AComponent, public ICollisionEvent
 		void Jump();
 		void DeadZone();
 		void Death();
+		void Animation(float deltaTime, b2Vec2 velocity, sf::Vector2f dir);
 		void Update(float dt) override;
 		void BeginCollision(Entity* me, Entity* other) override;
 		void EndCollision(Entity* me, Entity* other) override;

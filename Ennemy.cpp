@@ -46,6 +46,14 @@ void Ennemy::Move(float deltaTime)
 		
 	b2Vec2 velocity = rb->getLinearVelocity();
 
+	Animation(deltaTime);
+
+	velocity.x = dir.x * speed / Physics::worldScale;
+	rb->setLinearVelocity(velocity);
+}
+
+void Ennemy::Animation(float deltaTime)
+{
 	animTimer += deltaTime;
 	if (animTimer >= animSpeed) {
 		if (anim) {
@@ -80,9 +88,6 @@ void Ennemy::Move(float deltaTime)
 		}
 		animTimer = 0.f;
 	}
-
-	velocity.x = dir.x * speed / Physics::worldScale;
-	rb->setLinearVelocity(velocity);
 }
 
 void Ennemy::Update(float dt)

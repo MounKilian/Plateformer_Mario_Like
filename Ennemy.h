@@ -14,6 +14,7 @@ class Ennemy : public AComponent, public ICollisionEvent
 	public:
 		void Init(int type);
 		void Move(float deltaTime);
+		void Animation(float deltaTime);
 		void Update(float dt);
 		void BeginCollision(Entity* me, Entity* other) override;
 		void EndCollision(Entity* me, Entity* other) override;

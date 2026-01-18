@@ -42,27 +42,7 @@ void Player::Move(float deltaTime)
 
 	b2Vec2 velocity = rb->getLinearVelocity();
 
-	if (dir.x != 0 && std::abs(velocity.y) < 0.01f) {
-		animTimer += deltaTime;
-		if (animTimer >= animSpeed) {
-			if (anim) {
-				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 258, 258 }, { 124, 152 }));
-				anim = false;
-			}
-			else {
-				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
-				anim = true;
-			}
-			animTimer = 0.f;
-		}
-	}
-	else if (std::abs(velocity.y) > 0.01f) {
-		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 387, 258 }, { 124, 152 }));
-	} 
-	else {
-		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
-		anim = true;
-	}
+	Animation(deltaTime, velocity, dir);
 
 	if (dir.x == 0)
 		return;
@@ -91,6 +71,31 @@ void Player::Death()
 	SceneManager* sceneManager = SceneManager::Instance();
 	sceneManager->ClearScene(); 
 	sceneManager->ChangeScene("GameOver");
+}
+
+void Player::Animation(float deltaTime, b2Vec2 velocity, sf::Vector2f dir)
+{
+	if (dir.x != 0 && std::abs(velocity.y) < 0.01f) {
+		animTimer += deltaTime;
+		if (animTimer >= animSpeed) {
+			if (anim) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 258, 258 }, { 124, 152 }));
+				anim = false;
+			}
+			else {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
+				anim = true;
+			}
+			animTimer = 0.f;
+		}
+	}
+	else if (std::abs(velocity.y) > 0.01f) {
+		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 387, 258 }, { 124, 152 }));
+	}
+	else {
+		parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
+		anim = true;
+	}
 }
 
 void Player::DeadZone()
