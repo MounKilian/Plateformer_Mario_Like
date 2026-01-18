@@ -8,6 +8,7 @@
 #include "ICollisionEvent.h"
 #include "Rigidbody.h"
 #include "Player.h"
+#include "Sound.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -137,6 +138,7 @@ void Tiles::BeginCollision(Entity* me, Entity* other)
 			}
 		}
 		if (type == 13) {
+			parent->getComponent<Sound>()->Play();
 			parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 325, 0 }, { 64, 64 }));
 			type = 0;
 		}

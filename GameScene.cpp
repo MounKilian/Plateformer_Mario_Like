@@ -61,7 +61,7 @@ void GameScene::CreateEnnemy(sf::Texture* textureEnnemy, sf::SoundBuffer* soundE
 }
 
 
-void GameScene::CreateTilePlatform(int type, float startX, int tilesNbrs, float y, sf::Texture* textureTile)
+void GameScene::CreateTilePlatform(sf::SoundBuffer* soundCoin, int type, float startX, int tilesNbrs, float y, sf::Texture* textureTile)
 {
 	Application* app = Application::Instance();
 	SceneManager* scene = SceneManager::Instance();
@@ -80,6 +80,9 @@ void GameScene::CreateTilePlatform(int type, float startX, int tilesNbrs, float 
 		cube->addComponent<Transform>()->setPosition({ startX, y });
 		cube->addComponent(new Renderer(textureTile));
 		cube->addComponent<Tiles>()->Init(type);
+		if (type == 13) {
+			cube->addComponent(new Sound(soundCoin));
+		}
 		if (isPhysics) {
 			float x = cube->getComponent<Transform>()->getPosition().x;
 			cube->addComponent<Transform>()->setPosition({ x, y });
@@ -108,6 +111,9 @@ void GameScene::CreateTilePlatform(int type, float startX, int tilesNbrs, float 
 			Entity* cube = new Entity();
 			cube->addComponent<Transform>()->setPosition({ x, y });
 			cube->addComponent(new Renderer(textureTile));
+			if (type == 13) {
+				cube->addComponent(new Sound(soundCoin));
+			}
 
 			if (isPhysics) {
 				if (i == 0)
@@ -183,7 +189,7 @@ void GameScene::CreateBackground(sf::Texture* textureBackground, int type)
 	}
 }
 
-void GameScene::CreateMap(sf::Texture* textureTile, std::vector<std::vector<int>> map)
+void GameScene::CreateMap(sf::Texture* textureTile, sf::SoundBuffer* soundCoin, std::vector<std::vector<int>> map)
 {
 	const float tileSize = 32.f;
 	float actualPositionX = -280.f;
@@ -206,13 +212,13 @@ void GameScene::CreateMap(sf::Texture* textureTile, std::vector<std::vector<int>
 				while (x + length < map[y].size() && map[y][x + length] == value) {
 					length++;
 				}
-				CreateTilePlatform(value, actualPositionX, length, actualPositionY, textureTile);
+				CreateTilePlatform(soundCoin, value, actualPositionX, length, actualPositionY, textureTile);
 				actualPositionX += tileSize * length;
 				x += length - 1;
 				continue;
 			}
 			else {
-				CreateTilePlatform(value, actualPositionX, 1, actualPositionY, textureTile);
+				CreateTilePlatform(soundCoin, value, actualPositionX, 1, actualPositionY, textureTile);
 				actualPositionX += tileSize;
 				continue;
 			}

@@ -20,11 +20,12 @@ void Level2Scene::Init()
 	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
 	sf::SoundBuffer* soundPlayer = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
 	sf::SoundBuffer* soundEnnemy = ressourceManager->loadsound("Assets\\sfx_hurt.ogg");
+	sf::SoundBuffer* soundCoin = ressourceManager->loadsound("Assets\\sfx_coin.ogg");
 	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level2.csv");
 
 	CreateBackground(textureBackground, 4);
 
-	CreateMap(textureTile, map);
+	CreateMap(textureTile, soundCoin, map);
 
 	CreatePlayer(texturePlayer, soundPlayer,{ 430.f, 112.f });
 
