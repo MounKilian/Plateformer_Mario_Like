@@ -153,6 +153,7 @@
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Tiles.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UICoins.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ACollider.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Tiles.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UICoins.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

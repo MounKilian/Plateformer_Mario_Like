@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Ennemy.h"
 #include "BoxCollider.h"
+#include "UICoins.h"
 
 void Level1Scene::Init()
 {
@@ -27,6 +28,8 @@ void Level1Scene::Init()
 
 	CreateMap(textureTile, soundCoin, map);
 
+	CreateUI(textureTile);
+	
 	CreatePlayer(texturePlayer, soundPlayer, { 430.f, 112.f });
 
 	// GreenBlob (1)

@@ -12,5 +12,6 @@ class GameScene : public AScene
 		void CreateTilePlatform(sf::SoundBuffer* soundCoin, int type, float startX, int tilesNbrs, float y, sf::Texture* textureTile);
 		void CreateBackground(sf::Texture* textureBackground, int type);
 		void CreateMap(sf::Texture* textureTile, sf::SoundBuffer* soundCoin, std::vector<std::vector<int>> map);
+		void CreateUI(sf::Texture* textureTile);
 };
 

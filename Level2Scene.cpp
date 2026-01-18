@@ -29,6 +29,8 @@ void Level2Scene::Init()
 
 	CreatePlayer(texturePlayer, soundPlayer,{ 430.f, 112.f });
 
+	CreateUI(textureTile);
+
 	// RedBlob (3)
 	// Fly (4)
 	CreateEnnemy(textureEnnemy, soundEnnemy, { 1397.f, 144.f }, 4);

@@ -10,6 +10,7 @@
 #include "Tiles.h"
 #include "Sound.h"
 #include "Background.h"
+#include "UICoins.h"
 
 void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::SoundBuffer* soundPlayer, sf::Vector2f spawn)
 {
@@ -227,4 +228,31 @@ void GameScene::CreateMap(sf::Texture* textureTile, sf::SoundBuffer* soundCoin, 
 		}
 		actualPositionY += tileSize;
 	}
+}
+
+void GameScene::CreateUI(sf::Texture* textureTile)
+{
+	Entity* coinUI = new Entity();
+	coinUI->addComponent<Transform>()->setPosition({ 170.f, -160.f });
+	coinUI->addComponent(new Renderer(textureTile));
+	coinUI->addComponent<UICoins>()->Init(1);
+	this->AddEntity(coinUI);
+
+	Entity* coinUI2 = new Entity();
+	coinUI2->addComponent<Transform>()->setPosition({ 200.f, -160.f });
+	coinUI2->addComponent(new Renderer(textureTile));
+	coinUI2->addComponent<UICoins>()->Init(2);
+	this->AddEntity(coinUI2);
+
+	Entity* coinUI3 = new Entity();
+	coinUI3->addComponent<Transform>()->setPosition({ 220.f, -160.f });
+	coinUI3->addComponent(new Renderer(textureTile));
+	coinUI3->addComponent<UICoins>()->Init(3);
+	this->AddEntity(coinUI3);
+
+	Entity* coinUI4 = new Entity();
+	coinUI4->addComponent<Transform>()->setPosition({ 240.f, -160.f });
+	coinUI4->addComponent(new Renderer(textureTile));
+	coinUI4->addComponent<UICoins>()->Init(4);
+	this->AddEntity(coinUI4);
 }
