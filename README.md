@@ -2,7 +2,7 @@
 
 Welcome to my plateformer 2D !
 
-<img src="../x64/Debug/Assets/ReadMe/plateformer.png" width="800" />
+<img src="ReadMe/plateformer.png" width="800" />
 
 # Prerequisite ⏪
 
