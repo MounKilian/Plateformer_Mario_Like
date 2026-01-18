@@ -20,7 +20,7 @@ Somes knowledges in this field :
 ```
 2. Reach in the repository.
 ```bash
-  cd cd .\\ConsoleApplication3\\
+  cd .\ConsoleApplication3\
 ```
 
 # Start 🧑‍💻
