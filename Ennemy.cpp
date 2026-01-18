@@ -34,6 +34,9 @@ void Ennemy::Init(int type)
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
 	parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
 	dir.x = -1.f;
+	anim = true;
+	animSpeed = 0.10f;
+	animTimer = 0.f;
 }
 
 void Ennemy::Move(float deltaTime)
@@ -42,6 +45,42 @@ void Ennemy::Move(float deltaTime)
 	Rigidbody* rb = parent->getComponent<Rigidbody>();
 		
 	b2Vec2 velocity = rb->getLinearVelocity();
+
+	animTimer += deltaTime;
+	if (animTimer >= animSpeed) {
+		if (anim) {
+			if (type == 1) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 389 }, { 64, 64 }));
+			}
+			if (type == 2) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 195, 0 }, { 64, 64 }));
+			}
+			if (type == 3) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 324 }, { 64, 64 }));
+			}
+			if (type == 4) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 130, 130 }, { 64, 64 }));
+			}
+			anim = false;
+		}
+		else {
+			if (type == 1) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 65, 389 }, { 64, 64 }));
+			}
+			if (type == 2) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 260, 0 }, { 64, 64 }));
+			}
+			if (type == 3) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 65, 324 }, { 64, 64 }));
+			}
+			if (type == 4) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 195, 130 }, { 64, 64 }));
+			}
+			anim = true;
+		}
+		animTimer = 0.f;
+	}
+
 	velocity.x = dir.x * speed / Physics::worldScale;
 	rb->setLinearVelocity(velocity);
 }

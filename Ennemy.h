@@ -7,6 +7,9 @@ class Ennemy : public AComponent, public ICollisionEvent
 {
 	sf::Vector2f dir;
 	int type;
+	bool anim;
+	float animTimer;
+	float animSpeed;
 
 	public:
 		void Init(int type);

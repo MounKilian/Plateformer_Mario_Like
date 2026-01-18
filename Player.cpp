@@ -65,7 +65,7 @@ void Player::Move(float deltaTime)
 	}
 
 	if (dir.x == 0)
-		return ;
+		return;
 
 	velocity.x = dir.x * speed / Physics::worldScale;
 	rb->setLinearVelocity(velocity);
