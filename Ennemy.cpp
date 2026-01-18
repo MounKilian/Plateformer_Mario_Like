@@ -10,6 +10,7 @@
 #include "AScene.h"
 #include "ICollisionEvent.h"
 #include "Player.h"
+#include "Sound.h"
 #include "BoxCollider.h"
 #include <iostream>
 
@@ -104,6 +105,7 @@ void Ennemy::BeginCollision(Entity* me, Entity* other)
 		}
 		else {
 			if (other->getComponent<Transform>()->getPosition().y + 35.f <= parent->getComponent<Transform>()->getPosition().y) {
+				parent->getComponent<Sound>()->Play();
 				SceneManager* sceneManager = SceneManager::Instance();
 				AScene* scene = sceneManager->GetCurrentScene();
 				scene->RemoveEntity(parent);

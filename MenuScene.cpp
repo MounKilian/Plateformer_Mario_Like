@@ -20,7 +20,7 @@ void MenuScene::Init()
     RessourceManager* ressourceManager = RessourceManager::Instance();
     sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
     sf::Font* font = ressourceManager->loadFont("Assets\\JungleAdventurer.ttf");
-    soundSelect = ressourceManager->loadsound("Assets\\sfx_select.ogg");
+    sf::SoundBuffer* soundSelect = ressourceManager->loadsound("Assets\\sfx_select.ogg");
 
 
     Entity* backgroundCloud = new Entity();
@@ -76,7 +76,7 @@ void MenuScene::Update(float deltaTime)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
     {
         SceneManager* sceneManager = SceneManager::Instance();
-        menu->getComponent<Sound>()->Play(soundSelect);
+        menu->getComponent<Sound>()->Play();
         sceneManager->ClearScene();
         sceneManager->ChangeScene("Level1");
     }

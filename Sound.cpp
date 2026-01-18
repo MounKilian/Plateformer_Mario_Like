@@ -9,3 +9,7 @@ void Sound::Play(sf::SoundBuffer* buffer) {
 	this->sound = newSound;
 	sound.play();
 }
+
+void Sound::Play() {
+	sound.play();
+}

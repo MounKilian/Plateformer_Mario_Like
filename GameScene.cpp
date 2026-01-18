@@ -36,7 +36,7 @@ void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::SoundBuffer* soundP
 	scene->GetCurrentScene()->AddEntity(m_player);
 }
 
-void GameScene::CreateEnnemy(sf::Texture* textureEnnemy, sf::Vector2f spawn, int type)
+void GameScene::CreateEnnemy(sf::Texture* textureEnnemy, sf::SoundBuffer* soundEnnemy, sf::Vector2f spawn, int type)
 {
 	Application* app = Application::Instance();
 	SceneManager* scene = SceneManager::Instance();
@@ -45,6 +45,7 @@ void GameScene::CreateEnnemy(sf::Texture* textureEnnemy, sf::Vector2f spawn, int
 	ennemy->addComponent<Transform>()->setPosition(spawn);
 	ennemy->addComponent(new Renderer(textureEnnemy));
 	ennemy->addComponent<Ennemy>()->Init(type);
+	ennemy->addComponent(new Sound(soundEnnemy));
 
 	Rigidbody* ennemyRigidbody = ennemy->addComponent<Rigidbody>();
 	ennemyRigidbody->Init(app->getPhysicsWorld()->getWorld());

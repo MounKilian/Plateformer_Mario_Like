@@ -19,6 +19,7 @@ void Level1Scene::Init()
 	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
 	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
 	sf::SoundBuffer* soundPlayer = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
+	sf::SoundBuffer* soundEnnemy = ressourceManager->loadsound("Assets\\sfx_hurt.ogg");
 	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level1.csv");
 
 	CreateBackground(textureBackground, 3);
@@ -29,8 +30,8 @@ void Level1Scene::Init()
 
 	// GreenBlob (1)
 	// Bee (2)
-	CreateEnnemy(textureEnnemy, { 854.f, 112.f }, 2);
-	CreateEnnemy(textureEnnemy, { 1400.f, 123.f }, 1);
+	CreateEnnemy(textureEnnemy, soundEnnemy, { 854.f, 112.f }, 2);
+	CreateEnnemy(textureEnnemy, soundEnnemy, { 1400.f, 123.f }, 1);
 }
 
 void Level1Scene::Update(float deltaTime)

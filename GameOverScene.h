@@ -4,7 +4,6 @@
 
 class GameOverScene : public AScene
 {
-	sf::SoundBuffer* soundSelect;
 	Entity* gameOverText;
 
 	public : 

@@ -4,7 +4,6 @@
 
 class MenuScene : public AScene
 {
-	sf::SoundBuffer* soundSelect;
 	Entity* menu;
 
 	public :

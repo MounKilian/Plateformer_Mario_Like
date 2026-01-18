@@ -9,5 +9,6 @@ class Sound : public AComponent
 	public:
 	    Sound(sf::SoundBuffer* buffer);
 		void Play(sf::SoundBuffer* buffer);
+		void Play();
 };
 
