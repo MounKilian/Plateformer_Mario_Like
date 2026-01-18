@@ -10,6 +10,8 @@ class Player : public AComponent, public ICollisionEvent
 	bool anim;
 	float animTimer;
 	float animSpeed;
+	sf::SoundBuffer* soundPlayerJump;
+	sf::SoundBuffer* soundPlayerDeath;
 
 	public :
 		void Init();

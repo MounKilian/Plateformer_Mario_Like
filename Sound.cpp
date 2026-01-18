@@ -4,6 +4,8 @@ Sound::Sound(sf::SoundBuffer* buffer) : sound(*buffer)
 {
 }
 
-void Sound::Play() {
+void Sound::Play(sf::SoundBuffer* buffer) {
+	sf::Sound newSound(*buffer);
+	this->sound = newSound;
 	sound.play();
 }

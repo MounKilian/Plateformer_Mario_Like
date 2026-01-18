@@ -11,10 +11,15 @@
 #include "BoxCollider.h"
 #include "Application.h"
 #include "Sound.h"
+#include "RessourceManager.h"
 #include <iostream>
 
 void Player::Init()
 {
+	RessourceManager* ressourceManager = RessourceManager::Instance();
+	soundPlayerJump = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
+	soundPlayerDeath = ressourceManager->loadsound("Assets\\sfx_disappear.ogg");
+
 	parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 258 }, { 124, 152 }));
 	parent->getComponent<Transform>()->setOrigin({ 62, 76 });
 	parent->getComponent<Transform>()->setScale({0.5f, 0.5f});
@@ -61,7 +66,7 @@ void Player::Jump()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && std::abs(velocity.y) < 0.01f)
 	{
-		parent->getComponent<Sound>()->Play();
+		parent->getComponent<Sound>()->Play(soundPlayerJump);
 		velocity.y = -jumpForce;
 		rb->setLinearVelocity(velocity);
 	}
@@ -69,6 +74,7 @@ void Player::Jump()
 
 void Player::Death()
 {
+	parent->getComponent<Sound>()->Play(soundPlayerDeath);
 	SceneManager* sceneManager = SceneManager::Instance();
 	sceneManager->ClearScene(); 
 	sceneManager->ChangeScene("GameOver");

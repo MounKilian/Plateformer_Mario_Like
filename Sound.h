@@ -8,6 +8,6 @@ class Sound : public AComponent
 
 	public:
 	    Sound(sf::SoundBuffer* buffer);
-		void Play();
+		void Play(sf::SoundBuffer* buffer);
 };
 
