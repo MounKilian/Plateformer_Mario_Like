@@ -149,6 +149,7 @@
     <ClCompile Include="RessourceManager.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Tiles.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="RessourceManager.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Tiles.h" />
     <ClInclude Include="Transform.h" />

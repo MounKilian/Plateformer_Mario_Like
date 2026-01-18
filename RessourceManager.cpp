@@ -29,6 +29,19 @@ sf::Texture* RessourceManager::loadtexture(const std::string& filename)
 	return m_cache[filename];
 }
 
+sf::SoundBuffer* RessourceManager::loadsound(const std::string& filename)
+{
+    if (!m_cacheSound.contains(filename)) {
+        TCHAR buffer[MAX_PATH];
+        GetModuleFileName(NULL, buffer, MAX_PATH);
+
+        std::string filenameAboslute = std::filesystem::path(buffer).parent_path().string();
+        std::cout << "Loading sound: " << filenameAboslute + "\\" + filename << std::endl;
+        m_cacheSound[filename] = new sf::SoundBuffer(filenameAboslute + "\\" + filename);
+    }
+    return m_cacheSound[filename];
+}
+
 std::vector<std::vector<int>> RessourceManager::loadCSV(const std::string& filename)
 {
     if (m_csvCache.contains(filename)) {

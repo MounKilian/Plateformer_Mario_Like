@@ -8,9 +8,10 @@
 #include "BoxCollider.h"
 #include "SceneManager.h"
 #include "Tiles.h"
+#include "Sound.h"
 #include "Background.h"
 
-void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::Vector2f spawn)
+void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::SoundBuffer* soundPlayer, sf::Vector2f spawn)
 {
 	Application* app = Application::Instance();
 	SceneManager* scene = SceneManager::Instance();
@@ -19,6 +20,7 @@ void GameScene::CreatePlayer(sf::Texture* texturePlayer, sf::Vector2f spawn)
 	player->addComponent<Transform>()->setPosition(spawn);
 	player->addComponent(new Renderer(texturePlayer));
 	player->addComponent<Player>()->Init();
+	player->addComponent(new Sound(soundPlayer));
 
 	Rigidbody* rigidbody = player->addComponent<Rigidbody>();
 	rigidbody->Init(app->getPhysicsWorld()->getWorld());

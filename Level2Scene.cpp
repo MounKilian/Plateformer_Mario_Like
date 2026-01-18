@@ -18,13 +18,14 @@ void Level2Scene::Init()
 	sf::Texture* textureTile = ressourceManager->loadtexture("Assets\\spritesheet_tiles.png");
 	sf::Texture* texturePlayer = ressourceManager->loadtexture("Assets\\characters.png");
 	sf::Texture* textureEnnemy = ressourceManager->loadtexture("Assets\\enemies.png");
+	sf::SoundBuffer* soundPlayer = ressourceManager->loadsound("Assets\\sfx_jump.ogg");
 	std::vector<std::vector<int>> map = ressourceManager->loadCSV("Assets\\level2.csv");
 
 	CreateBackground(textureBackground, 4);
 
 	CreateMap(textureTile, map);
 
-	CreatePlayer(texturePlayer, { 430.f, 112.f });
+	CreatePlayer(texturePlayer, soundPlayer,{ 430.f, 112.f });
 
 	// RedBlob (3)
 	// Fly (4)

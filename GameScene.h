@@ -7,7 +7,7 @@ class GameScene : public AScene
 	protected :
 		Entity* m_player;
 
-		void CreatePlayer(sf::Texture* texturePlayer, sf::Vector2f spawn);
+		void CreatePlayer(sf::Texture* texturePlayer, sf::SoundBuffer* soundPlayer, sf::Vector2f spawn);
 		void CreateEnnemy(sf::Texture* textureEnnemy, sf::Vector2f spawn, int type);
 		void CreateTilePlatform(int type, float startX, int tilesNbrs, float y, sf::Texture* textureTile);
 		void CreateBackground(sf::Texture* textureBackground, int type);

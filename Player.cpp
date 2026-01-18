@@ -10,7 +10,7 @@
 #include "AScene.h"
 #include "BoxCollider.h"
 #include "Application.h"
-#include "SceneManager.h"
+#include "Sound.h"
 #include <iostream>
 
 void Player::Init()
@@ -61,6 +61,7 @@ void Player::Jump()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && std::abs(velocity.y) < 0.01f)
 	{
+		parent->getComponent<Sound>()->Play();
 		velocity.y = -jumpForce;
 		rb->setLinearVelocity(velocity);
 	}
