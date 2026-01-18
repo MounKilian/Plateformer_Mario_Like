@@ -27,11 +27,15 @@ void Player::Move(float deltaTime)
 
 	sf::Vector2f dir;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
 		dir.x -= 1.f;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		parent->getComponent<Transform>()->setScale({ -0.5f, 0.5f });
+	}
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
 		dir.x += 1.f;
+		parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
+	}
 
 	if (dir.x == 0)
 		return ;
