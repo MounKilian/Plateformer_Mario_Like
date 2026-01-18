@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "Renderer.h"
 #include "TextRenderer.h"
+#include "Sound.h"
 #include "Background.h"
 #include "SceneManager.h"
 #include <SFML/Graphics.hpp>
@@ -19,6 +20,7 @@ void GameOverScene::Init()
 	RessourceManager* ressourceManager = RessourceManager::Instance();
 	sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
     sf::Font* font = ressourceManager->loadFont("Assets\\JungleAdventurer.ttf");
+    soundSelect = ressourceManager->loadsound("Assets\\sfx_select.ogg");
 
     Entity* backgroundCloud = new Entity();
     backgroundCloud->addComponent<Transform>()->setPosition({ 0.0f, -150.f });
@@ -40,9 +42,10 @@ void GameOverScene::Init()
     this->AddEntity(backgroundGround);
 
 
-	Entity* gameOverText = new Entity();
+	gameOverText = new Entity();
     gameOverText->addComponent<Transform>()->setPosition({ -70.f , -70.f});
 	gameOverText->addComponent(new TextRenderer(font));
+    gameOverText->addComponent(new Sound(soundSelect));
     gameOverText->getComponent<TextRenderer>()->setString("GAME OVER");
     gameOverText->getComponent<TextRenderer>()->setFillColor(sf::Color::Red);
     gameOverText->getComponent<TextRenderer>()->setCharacterSize(64);
@@ -72,9 +75,12 @@ void GameOverScene::Update(float deltaTime)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
     {
         SceneManager* sceneManager = SceneManager::Instance();
+        gameOverText->getComponent<Sound>()->Play(soundSelect);
+
         sceneManager->ClearScene();
 
         if (sceneManager->getLevel() == 1) {
+
             sceneManager->ChangeScene("Level1");
         }
         else {

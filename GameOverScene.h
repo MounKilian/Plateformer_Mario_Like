@@ -4,8 +4,11 @@
 
 class GameOverScene : public AScene
 {
-public : 
-	void Init();
-	void Update(float deltaTime);
+	sf::SoundBuffer* soundSelect;
+	Entity* gameOverText;
+
+	public : 
+		void Init();
+		void Update(float deltaTime);
 };
 

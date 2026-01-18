@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "Renderer.h"
 #include "TextRenderer.h"
+#include "Sound.h"
 #include "Background.h"
 #include "SceneManager.h"
 #include <SFML/Graphics.hpp>
@@ -19,6 +20,8 @@ void MenuScene::Init()
     RessourceManager* ressourceManager = RessourceManager::Instance();
     sf::Texture* textureBackground = ressourceManager->loadtexture("Assets\\background.png");
     sf::Font* font = ressourceManager->loadFont("Assets\\JungleAdventurer.ttf");
+    soundSelect = ressourceManager->loadsound("Assets\\sfx_select.ogg");
+
 
     Entity* backgroundCloud = new Entity();
     backgroundCloud->addComponent<Transform>()->setPosition({ 0.0f, -150.f });
@@ -40,13 +43,14 @@ void MenuScene::Init()
     this->AddEntity(backgroundGround);
 
 
-    Entity* Menu = new Entity();
-    Menu->addComponent<Transform>()->setPosition({ -70.f , -70.f });
-    Menu->addComponent(new TextRenderer(font));
-    Menu->getComponent<TextRenderer>()->setString("PLATEFORMER MENU");
-    Menu->getComponent<TextRenderer>()->setFillColor(sf::Color::Red);
-    Menu->getComponent<TextRenderer>()->setCharacterSize(52);
-    this->AddEntity(Menu);
+    menu = new Entity();
+    menu->addComponent<Transform>()->setPosition({ -70.f , -70.f });
+    menu->addComponent(new TextRenderer(font));
+    menu->addComponent(new Sound(soundSelect));
+    menu->getComponent<TextRenderer>()->setString("PLATEFORMER MENU");
+    menu->getComponent<TextRenderer>()->setFillColor(sf::Color::Red);
+    menu->getComponent<TextRenderer>()->setCharacterSize(52);
+    this->AddEntity(menu);
 
     Entity* playText = new Entity();
     playText->addComponent<Transform>()->setPosition({ 0.f, 40.f });
@@ -72,6 +76,7 @@ void MenuScene::Update(float deltaTime)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
     {
         SceneManager* sceneManager = SceneManager::Instance();
+        menu->getComponent<Sound>()->Play(soundSelect);
         sceneManager->ClearScene();
         sceneManager->ChangeScene("Level1");
     }
