@@ -118,6 +118,32 @@ void Tiles::Init(int type)
 
 	parent->getComponent<Transform>()->setOrigin({ 32, 32 });
 	parent->getComponent<Transform>()->setScale({ 0.5f, 0.5f });
+	anim = true;
+	animSpeed = 0.10f;
+	animTimer = 0.f;
+}
+
+void Tiles::Animation(float deltaTime) {
+	animTimer += deltaTime;
+	if (animTimer >= animSpeed) {
+		if (anim) {
+			if (type == 32) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 65, 130 }, { 64, 64 }));
+			}
+			anim = false;
+		}
+		else {
+			if (type == 32) {
+				parent->getComponent<Renderer>()->GetSprite()->setTextureRect(sf::IntRect({ 0, 130 }, { 64, 64 }));
+			}
+			anim = true;
+		}
+		animTimer = 0.f;
+	}
+}
+
+void Tiles::Update(float deltaTime) {
+	Animation(deltaTime);
 }
 
 void Tiles::BeginCollision(Entity* me, Entity* other)
